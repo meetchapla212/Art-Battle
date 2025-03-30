@@ -1,0 +1,157 @@
+extends ./eventList_layout
+block content
+    div#loading-overlay(data-bind="visible: Loading")
+    if(userStatus === 'Photo' || userStatus === 'Admin')
+        a.pull-left(href=process.env.MP + `/v/${VoterHash}/upload`) Click here to upload photos
+        a.pull-right(href=`${site_url}/admin/${phoneHash}`) Event Admin
+    // if (phoneHash && phoneHash.length > 0)
+    //    a(href=`/a/r/${phoneHash}`) View Auction
+    // else
+    //    a(href=`/a/`) View Auction
+    section.col-xs-12.zeroRightLeftPad.voting-list(style="margin:0; padding: 0")
+        if(Message.Body)
+            // ko if: showMessageAlert()
+            button.close(type='button' data-dismiss='alert' aria-label='Close' data-bind="click: (vm) => {vm.showMessageAlert(false)} ")
+                span(aria-hidden='true') &times;
+            .alert.alert-primary.alert-artist(role='alert')
+                h4.alert-heading #{Message.Title}
+                p
+                    | #!{Message.Body}
+            // /ko
+        // ko if: TopPlayerUrl
+        div.video-player(data-bind="attr: {id: 'topPlayer'}") Loading the Video..
+        div(data-bind="jwPlayer: TopPlayerUrl, playerId: 'topPlayer', posterUrl: ''")
+        // /ko
+        // ko foreach: EventListView
+        // ko if: StreamUrl() && Expanded().indexOf('expanded') > -1
+        div.video-player(data-bind="attr: {id: EID}") Loading the Video..
+        div(data-bind="jwPlayer: StreamUrl, playerId: EID, posterUrl: ''")
+        // /ko
+        div.eventItem(data-bind="css: Expanded(), attr: {id: eventId}, event: {click: function(vm, e) {handleEventView($root);}}")
+            div.left
+                span.eventTitle
+                    img(data-bind="attr: {src: flag, height: '19px'}")
+                    span &nbsp;&nbsp;&nbsp;
+                    span(data-bind="text: title")
+                span.description(data-bind="html: Expanded() ? Description: ShortDescription, click: function(vm, e) { if (e.target && e.target.href && e.target.href.length > 0) {window.location.href = e.target.href}}")
+                // ko if: winnerImage() && winnerName()
+                div.winner_in_tile
+                    span.winner_head &#127942&nbsp;
+                    span.first_name(data-bind="text: winnerNameArr()[0]")
+                    span &nbsp;
+                    span.last_name(data-bind="text: winnerNameArr()[1]")
+                // /ko
+            div.right
+                // ko if: !winnerImage()
+                div.datetime-range(data-bind="text: DataTimeRange")
+                div.venue(data-bind="text: Venue")
+                div.price
+                    span
+                        img(src=process.env.MP+"/images/currency_icon.png")
+                    span(data-bind="html: '&nbsp;' + Price")
+                span.statusText(data-bind="text: statusText, style: {\"background-color\": statusColor, \"color\": statusTextColor}")
+                br
+                // ko if: Votes && statusText.toLowerCase() === 'final'
+                span.numVotes(data-bind="html: Votes + ' votes'")
+                // /ko
+                // /ko
+                // ko if: winnerImage()
+                img.winner-img(data-bind="attr: {src: winnerImage().Thumbnail.url}")
+                // /ko
+            div.clearfix(data-bind="css: Expanded()")
+        // ko if: show()
+        // ko if: EnableAuction
+        div.switch-wrapper
+            div(data-bind="click: SwitchToVote")
+                img(alt="Vote" data-bind="attr: {src: mp+VoteSwitchImg()}")
+            div(data-bind="click: SwitchToAuction")
+                img(alt="Auction" data-bind="attr: {src: mp+AuctionSwitchImg()}")
+        // /ko
+        // ko if: IsVoteOpen()
+        //ko foreach: Rounds
+        div.artist-container.voting-enabled(data-bind="css: `${Active()} ${StatusCss()}`, click: function(vm, e){makeActive($root, $parent); e.stopPropagation(); console.log(Active()); console.log(RoundNumber);}")
+            div.artist_gallery
+                div.artist_items
+                    div.gallery_item.easel_main(style="flex-wrap: WRAP;")
+                        // ko if:StatusCss() == 'round-live'
+                        <span class="statusText" style="position: relative;left: 5px;background-color: rgb(209, 75, 25); color: rgb(255, 255, 255);height: 19px;margin-top: 7px">LIVE</span>
+                        // /ko
+                        span.easel-event-wrapper
+                            span.round_event(data-bind="text: $parent.title.split('-')[0]")
+                            br
+                            span.round_number(data-bind="text: `Round ${RoundNumber}`")
+                            br
+                            // ko foreach: WinningArtists()
+                            span.nameWrapper(data-bind="click: (vm, e) => {if ($parent.Active()){ e.stopPropagation();window.location.href = $data.Link()}}")
+                                span.first_name(data-bind="text: $data.Name[0]")
+                                span.last_name(data-bind="text: $data.Name[1]")
+                            // /ko
+                    //ko foreach: Artists
+                    div.gallery_item_vote
+                        div.gallery_item(data-bind="click: CycleImage")
+                            // ko if: SelectedImage
+                            img(data-bind="attr: {src: SelectedImage().Thumbnail().url}")
+                            // /ko
+                        div.clearfix
+                        span.nameWrapper
+                            span.eventId(data-bind="text: `${$parents[1].EID}-${$parents[0].RoundNumber}-${EaselNumber}`")
+                            br
+                            span(class="name_bucket" data-bind="click: (vm, e) => {if ($parent.Active()){e.stopPropagation();window.location.href = mp + Link()}}")
+                                span.first_name(data-bind="text: Name[0]")
+                                br
+                                span.last_name(data-bind="text: Name[1]")
+                            // ko if: SelectedImage() && SelectedImage().topBidText()
+                            // br
+                            // a.auction_link(data-bind="attr: {href: SelectedImage().AuctionLink()}, click: (vm, e) => {e.stopPropagation(); window.location=SelectedImage().AuctionLink()}")
+                                span(data-bind="html: SelectedImage().topBidText(), css: SelectedImage().topBidCss()")
+                                span(class="auction_status_point" data-bind="css: AuctionStatusCss()") &nbsp;&#9679;
+                            // /ko
+
+                        //ko if : Images().length > 0 && LastStateIndex() > -1 && !$parents[0].HasVoted()
+                        div.vote-button
+                           button.btn.btn-success.ladda-button.pull-right(data-style="zoom-in" data-size="xs"
+                               data-bind='click: (vm, e) => {Vote(e, $parents[1], $parents[0], SelectedImage())}, buttonbusy: VoteUpdater.Busy, css: VoteCss()' )
+                               span.ladda-label(data-bind='html: VoteText') Vote
+                        // /ko
+                        // ko if: HasVoted()
+                        div.vote-button.voted
+                            img(src=process.env.MP+"/images/checkbox.svg")
+                        // /ko
+                    // /ko
+        // /ko
+        // /ko
+        // ko if: !IsVoteOpen()
+        div.auction-container(data-bind="with: AuctionViewModel")
+            include active_artist_open
+            include auction_gallery
+            include auction/registrationForm
+        // /ko
+        div.view-auction
+            // a(data-bind="attr:{href: '/a'}, html: `VIEW AUCTION&nbsp;(${openAuctionCount()})`")
+            // ko if: SponsorText()
+            span.sponsor-text(data-bind="text: SponsorText()")
+            // /ko
+            // ko if: SponsorLogo()
+            img(data-bind="attr: {src: SponsorLogo().Url}")
+            // /ko
+        // /ko
+        if (VoterHash)
+            a(href='https://play.google.com/store/apps/details?id=com.artbattle.vote&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1')
+                img(alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png' width="121")
+            a(href="https://apps.apple.com/us/app/art-battle/id1466843882")
+                img(src=process.env.MP+"/images/svg/iphone_app_logo.svg" width="110")
+            a(href=process.env.MP+"#" data-bind="click: () => {alert('coming soon')}")
+                img(src=process.env.MP+"/images/oculus_badge.png" width="121")
+        div.clearfix
+        // /ko
+        // /ko
+        div.build_version
+            a(href=process.env.MP+"/y/all") v #{process.env.BUILD_VERSION}
+block append scripts
+    script.
+        const token = "#{token}";
+        let eventId = "#{eventId}";
+        let hash = "#{VoterHash}";
+        const phoneHash = "#{phoneHash}";
+        const artId = ''; // auction integration
+    script(src=process.env.MP+'/js/eventList.js?v='+process.env.BUILD_VERSION)

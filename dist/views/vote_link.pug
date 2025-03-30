@@ -1,0 +1,94 @@
+extends ./voting_layout
+block content
+    section.site-wrap.zeroRightLeftPad(data-bind="beforeUnloadText: beforeUnloadPrompt")
+        section.container.zeroRightLeftPad
+            section.col-xs-12.zeroRightLeftPad
+                span.logo
+                    a(href=process.env.MP+'#')
+                        img(width='98px' src=process.env.MP+'/images/ABVoteHead.svg')
+                span.cath
+                    if(countryFlag)
+                        img(src=process.env.MP+"/images/countries/4x3/" + countryFlag width="24px")
+                    span &nbsp;&nbsp;#{title}
+                div.total_rounds
+                    p !{Description}
+                // p.total_rounds #{totalContestants + ' Artists. ' + totalRounds+' Rounds.'}
+                div.view-auction
+                    a(data-bind="attr:{href: mp + '/a/r/"+ VoterHash +"'}") #{`VIEW AUCTION (${openAuctionCount})`}
+                div.roundHistory
+                    // ko foreach: Rounds
+                    div
+                        a(data-bind="click: (vm) => {$root.changeRound(vm)}, css: RoundWrapperCss()")
+                            span(data-bind="html: RoundText(), css: RoundCss()")
+                            br
+                            span.round(data-bind="html: 'ROUND ' + RoundNumber() + ':&nbsp;'")
+                    // ko if: (Show())
+                    h4
+                    section.voting.zeroRightLeftPad
+
+                                // duplicate vote forms
+                                include partials/voteForm
+                                div
+                                    ul.list
+                                        if (VoterHash && votesCount > 0)
+                                            li
+                                                a(href=process.env.MP+'/user/' + VoterHash) #{votesCount} VOTES in your history
+
+                                div(style="clear:both")
+                                div
+                                    span.message-tag(data-bind="html: message(), css: MessageCss()")
+                                div(style="clear:both")
+                                div.voting-list(class=userStatus !== 'Photo'? "no-camera": "" data-bind="css: !HasImages() ? 'no-images': ''")
+                                    // ko foreach: (Artists())
+                                    div.artist-container(class=(userStatus !== 'Photo') ? "no-camera": "" data-bind="click: (vm, e) => {$parent.setEaselNumber(EaselNumber, e.currentTarget, vm);}")
+                                        span.easel_number(data-bind="text: EaselNumber") &nbsp;&nbsp;&nbsp;
+                                        span.artist_gallery
+                                            span.artist_items
+                                                span.artist_name.gallery_item
+                                                    span
+                                                        span(data-bind="html: Name[0]")
+                                                        br
+                                                        span(data-bind="text: Name[1]")
+                                                // ko foreach: Combined
+                                                span.gallery_item(data-bind="css: Style(), click: (vm, e) => Download()")
+                                                    img(data-bind="attr: {src: Thumbnail().url  }")
+                                                // /ko
+                                                if(userStatus === 'Photo' || userStatus === 'Admin')
+                                                    span.gallery_item.cameraButton(data-bind="click: (vm, e) => {showDialog(true); e.stopPropagation(); }")
+                                    div.clearfix
+                                    div.modal.fade(data-bind="modal:showDialog")
+                                        div.modal-dialog
+                                            div.modal-content
+                                                div.modal-body
+                                                    span.icon.text-center
+                                                        img(src=process.env.MP+"/images/Add Camera-6.svg")
+                                                    p
+                                                        span.heading2.extra-light.text-center(data-bind="{text: 'Round ' + RoundNumber + ', Easel '+EaselNumber}")
+                                                        span.heading1.text-center
+                                                            span.light20(data-bind="html: Name[0]+'&nbsp;'")
+                                                            span.bold20(data-bind="text: Name[1]")
+                                                        div.modal-anchor
+                                                            input.cameraInput(type="file" accept="image/*;capture=camera" data-bind="event: {change: fileUpload}")
+                                                            a.modal-okay.bold-italic-36(data-bind="click: (vm, e) => {showDialog(false);$(e.currentTarget).prev('input.cameraInput').trigger('click');e.stopPropagation();}")
+                                                                span OK!
+                                                            a.modal-no-thanks.semi-bold-italic-20(data-bind="click: (vm, e) => {showDialog(false);e.stopPropagation();}") Cancel
+                                    // /ko
+                                    // /ko
+                                div(class="clearfix")
+                                // ko foreach: $root.RequestArr()
+                                progress-bar(params="progress: $data, totalUploads: 1")
+                                // /ko
+                    // /ko
+                    // /ko
+    div.app_link
+        a(href="https://apps.apple.com/app/art-battle/id1466843882")
+            img(src=process.env.MP+"/images/app_logo.svg")
+block append scripts
+    script.
+       //used in vm
+       const RoundWiseImages = JSON.parse(`!{JSON.stringify(roundWiseImages)}`);
+       const VoterHash = '!{VoterHash}';
+       const CurrentRoundNumber = !{CurrentRoundNumber};
+       const EID = '!{EID}';
+       const eventName = '!{title.replace(/'/g,"\\'")}';
+    script(src=process.env.MP+'/js/voting.js?v='+process.env.BUILD_VERSION)

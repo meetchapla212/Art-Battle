@@ -1,0 +1,17 @@
+extends ../layout
+
+block content
+    .page-header
+        h1 User Profile
+        h2 #{phoneNumber}
+        h2 #{nickName}
+    .container
+        .row
+            each val in preferences
+                .col-sm-12 !{`${val.preference.Preference}  ${val.enabled? '&#10004;' : '&#10060;'}`}
+        .row
+            .col-sm-12 Device tokens
+                pre !{`${deviceTokens.join("\n")}`}
+        .row
+            .col-sm-12
+                a(href=process.env.MP+"/user/send-test-notification/"+registrationId) Send Test Notification

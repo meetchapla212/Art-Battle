@@ -1,0 +1,25 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noEmitHelpers": true,
+    "baseUrl": ".",
+    "paths": {
+      "*": [
+        "./types/*",
+        "../../node_modules/@types/*",
+        "../../node_modules/@types/node/*"
+      ]
+    },
+    "lib": [
+      "es6",
+      "dom"
+    ],
+    "sourceRoot": "./server/src",
+    "typeRoots": ["./node_modules/@types/"]
+  },
+  "include": [
+    "./**/*"
+  ]
+}

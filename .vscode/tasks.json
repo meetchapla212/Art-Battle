@@ -1,0 +1,81 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "gulp",
+            "task": "build-client",
+            "problemMatcher": [
+                "$gulp-tsc"
+            ]
+        },
+        {
+            "type": "gulp",
+            "task": "build-server",
+            "problemMatcher": [
+                "$gulp-tsc"
+            ]
+        },
+        {
+            "type": "npm",
+            "script": "start",
+            "problemMatcher": [
+                "$gulp-tsc"
+            ]
+        },
+        {
+            "type": "npm",
+            "script": "build",
+            "problemMatcher": [
+                "$gulp-tsc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "type": "gulp",
+            "task": "build-home",
+            "problemMatcher": [
+                "$gulp-tsc"
+            ]
+        },
+        {
+            "type": "gulp",
+            "task": "build-common",
+            "problemMatcher": [
+                "$gulp-tsc"
+            ]
+        },
+        {
+            "type": "npm",
+            "script": "build-client",
+            "problemMatcher": [
+                "$gulp-tsc"
+            ]
+        },
+        {
+            "type": "npm",
+            "script": "build-server",
+            "problemMatcher": [
+                "$gulp-tsc"
+            ]
+        },
+        {
+            "type": "gulp",
+            "task": "build-register",
+            "problemMatcher": [
+                "$gulp-tsc"
+            ]
+        },
+        {
+            "type": "gulp",
+            "task": "build-voteResults",
+            "problemMatcher": [
+                "$gulp-tsc"
+            ]
+        }
+    ]
+}

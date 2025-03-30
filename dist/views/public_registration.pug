@@ -1,0 +1,39 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(name='theme-color' content='#4DA5F4')
+    meta(name='csrf-token', content=_csrf)
+    title #{title} - Art Battle Vote Manager
+    link(rel='shortcut icon', href=process.env.MP+'/images/favicon.ico', type='image/x-icon')
+    link(rel='icon', href=process.env.MP+'/images/favicon.ico', type='image/x-icon')
+    link(rel='stylesheet', href=process.env.MP+'/css/bootstrap.css')
+    link(rel="stylesheet" href="https://use.typekit.net/kot5qyf.css")
+    script.
+        var mp = '#{process.env.MP}';
+
+  body
+
+    #koroot.container
+        include partials/flash
+         div
+            if !registrationId
+                .row
+                    .col-sm-6
+                        .row
+                            h1 Register for #{eventName}
+                            hr.highlight
+                        .row
+                            form.form-horizontal(method='POST')
+                                input(type='hidden', name='_csrf', value=_csrf)
+                                .form-group
+                                    label.col-sm-2.control-label(for='email') Phone number
+                                    .col-sm-10
+                                            input.form-control(type='tel', name='PhoneNumber', id='phone', placeholder='phone no with country code', autofocus, required)
+                                .form-group
+                                    .col-sm-offset-2.col-sm-7
+                                            button.col-sm-4.btn.btn-primary(type='submit')
+                                                i.fa.fa-user
+                                                | Register

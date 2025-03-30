@@ -1,0 +1,26 @@
+{
+    "extends": "../../tsconfig.json",
+    "compilerOptions": {
+        "module": "es2015",
+        "moduleResolution": "node",
+        "importHelpers": true,
+        "typeRoots": ["./node_modules/@types/"],
+        "target": "es5",
+        "allowSyntheticDefaultImports": true,
+        "downlevelIteration": true,
+        "jsx": "react",
+        "jsxFactory": "h",
+        "lib": [
+            "es2018",
+            "dom",
+            "dom",
+            "es5",
+            "es2015",
+            "esnext.asynciterable"
+        ]
+    },
+    "include": [
+        "./**/*",
+        "../../node_modules/@types/knockout/index.d.ts"
+    ]
+}

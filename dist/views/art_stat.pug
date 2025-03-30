@@ -1,0 +1,32 @@
+doctype html
+html
+    head
+        meta(charset='utf-8')
+        meta(http-equiv='X-UA-Compatible', content='IE=edge')
+        meta(name='viewport', content='width=device-width, initial-scale=1.0')
+        meta(name='theme-color' content='#4DA5F4')
+        meta(name='csrf-token', content=_csrf)
+        title #{title} - Art Battle Vote Manager
+        link(rel='shortcut icon', href=process.env.MP+'/images/favicon.ico', type='image/x-icon')
+        link(rel='icon', href=process.env.MP+'/images/favicon.ico', type='image/x-icon')
+        link(rel='stylesheet', href=process.env.MP+'/css/bootstrap.css')
+        link(rel="stylesheet" href="https://use.typekit.net/kot5qyf.css")
+        link(rel='stylesheet', href=process.env.MP+'/css/main.css?v='+process.env.BUILD_VERSION)
+        meta(http-equiv="refresh" content="10")
+        script.
+            var mp = '#{process.env.MP}';
+    body
+        #koroot.container
+            block content
+                hr.art-stat-graph(style=`width: ${(stat.VoteCount) || 0.2}%`)
+                div.art-stat-label
+                    if (stat.ArtistFlag.length > 0)
+                        img(src=stat.ArtistFlag style="width: 25px")
+                        span &nbsp;
+                    span #{stat.ArtistName}
+                div.art-stat-label-small #{stat.ArtistCity}
+                // Easel #{stat.EaselNumber}, Round #{stat.Round}
+                if (stat.TopBidAmount > 0)
+                    div.art-stat-label-small #{stat.Currency}#{stat.TopBidAmount} top bid
+        block scripts
+            script.

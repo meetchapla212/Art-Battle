@@ -1,0 +1,21 @@
+{
+    "extends": "../tsconfig.json",
+    "compilerOptions": {
+        "importHelpers": false,
+        "module": "none",
+        "target": "es2017",
+        "noImplicitAny": true,
+        "outFile": "common.js",
+        "sourceMap": true,
+        "types": [
+            "knockout",
+            "ladda"
+        ],
+        "typeRoots": ["../../../node_modules/@types/"]
+    },
+    "include": [
+        "./**/*",
+        "../../../node_modules/@types/knockout/index.d.ts"
+    ],
+    "compileOnSave": false
+}

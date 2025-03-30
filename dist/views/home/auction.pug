@@ -1,0 +1,60 @@
+section.form-wrapper
+    form(method='POST')
+        label Events:
+        select.selectpicker.form-control.search-box-auction-event.SumoUnder(multiple='multiple',
+            onchange="console.log($(this).children(':selected').length)",
+            name='events', required='', data-bind="options: $data.events(),\
+    optionsText: 'title',\
+    value: $data.selectedAuctionEventId,\
+    selectedOptions: $data.SelectedAuctionEvents")
+
+        p
+        // ko foreach: $data.selectedAuctionEventText()
+
+        button.btn.btn-xs.ladda-button.btn-default(style='margin-left:1%', type='button', data-style='zoom-in', data-size='xs')
+            span.ladda-label(data-bind='text: title')
+        // /ko
+
+
+
+    //ko foreach: $data.PaymentStatuses()
+    div.payment-status-wrapper
+        div.left1-block
+            div.art-image
+                img(data-bind="attr: {src: `${Image() && Image().Thumbnail.url}`}")
+        div.left2-block
+            div.event-title(data-bind="{text: EventName()}")
+            div.artist-name(data-bind="{text: ArtistName()}")
+            div.artist-id(data-bind="{text: ArtId()}")
+        div.middle-block
+            // ko foreach: Bids()
+            span.bid-wrapper
+                span(data-bind="text: `${$parent.CurrencySymbol()}${Amount}`")
+                a.bidder-link(data-bind="attr: {href: `${mp}/p/${Registration.PhoneNumber}`}")
+                    span(data-bind="text: ` by ${Registration.FirstName || ''} ${Registration.LastName || ''}`")
+            // /ko
+        div.right1-block
+            div
+                div.BuyerOptions
+                    span.paid-label Buyer:
+                    select.payment-status-picker.form-control(data-bind="options: $data.PaymentStatusOptions(), value: selectedBuyerPayRecentStatus, " +
+                       "optionsValue: function(item) {return item._id}, " +
+                       "optionsText: function(item) { return item.status},valueAllowUnset: true, " +
+                       "optionsCaption: 'Choose...', " +
+                       "event: {change: () => {markBuyerPaid.bind($data)($parent.VM)}}")
+                    div.bought-stat-wrapper
+                        span.bought-stat(data-bind="text: FormattedBuyerPayRecentDate()?`Updated: ${FormattedBuyerPayRecentDate()}`:''")
+                        br
+                        span.bought-stat(data-bind="text: BuyerPayRecentUser()?`By: ${BuyerPayRecentUser()}`:''")
+                div.ArtistOptions
+                    span.paid-label Artist:
+                    select.payment-status-picker.form-control(data-bind=("options: $data.PaymentStatusOptions(), value: selectedArtistPayRecentStatus, " +
+                       "optionsValue: function(item) {return item._id}, " +
+                       "optionsText: function(item) { return item.status},valueAllowUnset: true, " +
+                       "optionsCaption: 'Choose...', " +
+                       "event: {change: () => {console.log('dt',$parent); markArtistPaid.bind($data)($parent.VM)}}"))
+                    div.bought-stat-wrapper
+                        span.bought-stat(data-bind="text: FormattedArtistPayRecentDate()?`Updated: ${FormattedArtistPayRecentDate()}`:''")
+                        br
+                        span.bought-stat(data-bind="text: ArtistPayRecentUser()?`By: ${ArtistPayRecentUser()}`:''")
+    // /ko

@@ -1,0 +1,638 @@
+@import url("https://use.typekit.net/kot5qyf.css");
+img {
+    max-width: 100%;
+}
+
+body {
+    background: #000;
+    font-family: acumin-pro-extra-condensed, sans-serif;
+}
+
+header {
+    float: left;
+    width: 100%;
+    background: -webkit-linear-gradient(top, rgba(212, 210, 210, 0.9) 0%, rgba(212, 210, 210, 0.91) 0%, rgba(255, 255, 255, 0.91) 73%);
+    padding: 10px 0;
+}
+
+header .logo {
+    float: left;
+}
+
+header .user-info {
+    float: right;
+    font-size: 27px;
+    color: black;
+    text-transform: uppercase;
+    padding-top: 43px;
+    font-weight: 600;
+}
+
+.content {
+    float: left;
+    width: 100%;
+    padding-top: 20px;
+    color: #fff;
+    min-height: 517px;
+}
+
+.thumb-gallery {
+    float: left;
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+.thumb-gallery .sec-head {
+    float: left;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.thumb-gallery .sec-head .img {
+    float: none;
+    display: inline-block;
+    vertical-align: middle;
+    width: 40px;
+}
+
+.thumb-gallery .sec-head h2 {
+    float: none;
+    display: inline-block;
+    vertical-align: middle;
+    color: #fff;
+    font-weight: 400;
+    font-family: acumin-pro-extra-condensed, sans-serif;
+    font-size: 26px;
+    margin: 0;
+}
+
+.thumb-gallery .gallery {
+    float: none;
+    display: inline-block;
+    width: 100%;
+    vertical-align: top;
+    padding-left: 0;
+}
+
+.thumb-gallery .gallery li {
+    float: none;
+    display: inline-block;
+    width: 24%;
+    vertical-align: middle;
+    padding: 0 5px;
+}
+
+.bid-info {
+    float: left;
+    width: 100%;
+    padding-top: 0px;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.bid-info .bid-name {
+    float: left;
+    width: 100%;
+    text-align: center;
+    font-weight: 300;
+    font-family: acumin-pro-extra-condensed, sans-serif;
+    margin-bottom: 40px;
+    text-decoration: underline;
+}
+
+.bid-info .bid-name span {
+    text-decoration: underline;
+}
+
+.bid-info .bid-name span {
+    float: left;
+    width: 100%;
+    font-weight: 600;
+}
+
+.bid-info .auction-img {
+    float: none;
+    display: inline-block;
+    width: 660px;
+    text-align: center;
+}
+
+.bid-info .auction-img .slider-nav .slide-thumb {
+    cursor: pointer;
+    height: 180px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 0px 7px;
+}
+
+.bid-info .auction-bid {
+    float: none;
+    display: inline-block;
+    width: 660px;
+    padding-top: 50px;
+}
+
+.bid-info .auction-bid .bid-list {
+    float: left;
+    width: 100%;
+    list-style: none;
+    padding-left: 0;
+    border-bottom: 1px solid #fff;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+.bid-info .auction-bid .bid-list li {
+    float: left;
+    width: 100%;
+    text-transform: uppercase;
+    font-size: 20px;
+}
+
+.bid-info .auction-bid .bid-list li .bidder-name {
+    float: left;
+    width: 48%;
+    text-align: left;
+}
+
+.bid-info .auction-bid .bid-list li .bid-price {
+    float: right;
+    width: 48%;
+    text-align: right;
+}
+
+.bid-info .auction-bid .bid-list li.higher-price {
+    font-size: 30px;
+}
+
+.bid-info .auction-bid .owners-bid {
+    float: left;
+    width: 100%;
+}
+
+.bid-info .auction-bid .owners-bid .owners-name {
+    float: left;
+    width: 48%;
+    text-align: left;
+    font-size: 30px;
+    text-transform: uppercase;
+    margin: 0;
+    font-family: acumin-pro-extra-condensed;
+    font-size: 52px;
+    font-weight: 900;
+}
+
+.bid-info .auction-bid .owners-bid .owners-price {
+    float: right;
+    /* background: #fff; */
+    border-radius: 3px;
+    color: #fff;
+    font-size: 22px;
+    width: auto;
+    padding: 0px 3px;
+    font-family: acumin-pro-extra-condensed;
+    font-size: 29px;
+}
+
+.bid-info .auction-bid .timing-info {
+    float: left;
+    width: 100%;
+    text-align: left;
+}
+
+.bid-info .auction-bid .timing-info h3 {
+    /* float: right; */
+    width: 84%;
+    font-weight: 400;
+    line-height: 14px;
+    /* text-align: right; */
+    /* padding-right: 5px; */
+    margin-right: 0;
+    margin-left: 0;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.bid-info .auction-bid .timing-info h3 .time {
+    float: none;
+    display: inline-block;
+    width: auto;
+    font-size: inherit;
+    font-weight: inherit;
+}
+
+.bid-info .auction-bid .timing-info h3 span {
+    float: left;
+    width: 100%;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.bid-info .auction-bid .timing-info .bid-button {
+    float: right;
+    font-size: 15px;
+    padding: 5px 6px;
+    text-decoration: none;
+    border-radius: 3px;
+    margin-top: 20px;
+    font-style: italic !important;
+    font-weight: 600;
+    font-family: "acumin-pro-condensed", sans-serif;
+    background: #3ab50e;
+    color: #fff;
+}
+
+.register-button {
+    font-size: 15px;
+    padding: 0px 5px;
+    text-decoration: none;
+    border-radius: 3px;
+    /* margin-top: 20px; */
+    font-style: italic !important;
+    font-weight: 900;
+    font-family: "acumin-pro-condensed", sans-serif;
+    background: #3ab50e;
+    color: #fff;
+    margin-left: 20px;
+    margin-bottom: 5px;
+}
+
+.register-input {
+    font-size: 19px;
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+.bid-info .auction-bid .timing-info .bid-button.success {
+    font-style: normal !important;
+    background: transparent;
+    color: #00A30D;
+}
+
+.bid-info .auction-bid .timing-info .bid-button.failed {
+    font-style: normal !important;
+    background: #a30815;
+    color: #fff;
+}
+
+.bid-info .auction-bid .timing-info .bid-button.confirm {
+    background: #D15919;
+    color: #fff;
+}
+
+footer {
+    float: left;
+    width: 100%;
+    margin-top: 60px;
+    color: #fff;
+}
+
+footer .brand-logo {
+    float: left;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+footer .brand-logo img {
+    max-width: 350px;
+}
+
+footer p {
+    float: left;
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    line-height: normal;
+    font-weight: 300;
+    font-style: italic;
+}
+
+footer .menu {
+    float: left;
+    width: 100%;
+    list-style: none;
+    padding-left: 0;
+    text-align: center;
+    margin: 10px 0;
+}
+
+footer .menu li {
+    float: none;
+    display: inline-block;
+    vertical-align: middle;
+    width: 49%;
+    text-align: center;
+    font-size: 23px;
+}
+
+footer .menu li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.details-info {
+    float: left;
+    width: 100%;
+}
+
+.details-info .list {
+    float: left;
+    width: 100%;
+    padding-left: 0;
+    list-style: none;
+}
+
+.details-info .list li {
+    float: left;
+    width: 100%;
+    text-transform: uppercase;
+    font-size: 22px;
+    padding: 5px 0;
+}
+
+.details-info .list li .details {
+    float: left;
+    width: 48%;
+    text-align: left;
+}
+
+.details-info .list li .price {
+    float: right;
+    width: 48%;
+    text-align: right;
+}
+
+.vote .thumb-gallery .gallery li {
+    width: 19%;
+    position: relative;
+}
+
+.vote .thumb-gallery .gallery li.round {
+    white-space: nowrap;
+    background: #fff;
+}
+
+.vote .thumb-gallery .gallery li.round:before {
+    content: "";
+    display: inline-block;
+    vertical-align: middle;
+    width: 0;
+    height: 100%;
+}
+
+.vote .thumb-gallery .gallery li.round span {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    color: #000;
+    text-align: center;
+    font-size: 25px;
+    height: 74px;
+    margin: auto;
+}
+
+.voting .round {
+    float: left;
+    width: 19%;
+    background: #fff;
+    padding: 30px 0;
+    text-align: center;
+    font-size: 25px;
+    color: #000;
+    padding: 60px 0;
+}
+
+.voting {
+    float: left;
+    width: 100%;
+}
+
+.auction-img {
+    padding: 0 5px;
+    float: left;
+    width: 59%;
+}
+
+.auction-img .widthAndHeight {
+    float: left;
+    padding: 8px 0px 0px 0px;
+    font-weight: 400;
+    color: #fff;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 22px;
+    line-height: 22px;
+    text-align: left;
+}
+
+.auction-img .description {
+    float: right;
+    padding: 5px 0px;
+    color: #fff;
+    border-radius: 3px;
+    font-size: 22px;
+    font-weight: 400;
+    text-decoration: none;
+    /* text-align: right; */
+}
+
+.auction-img div.row {
+    width: 245px;
+    margin: 0 auto;
+}
+
+.vote .bid-info .auction-bid {
+    width: 750px
+}
+
+@media (min-width: 768px) and(max-width: 991px) {
+    .vote .bid-info .auction-bid {
+        width: 80%;
+    }
+}
+
+@media (max-width: 767px) {
+    header .logo img {
+        width: 50px;
+    }
+
+    header .user-info {
+        font-size: 20px;
+        padding-top: 12px;
+    }
+
+    .bid-info .auction-img {
+        width: 66%;
+    }
+
+    .bid-info .auction-bid {
+        width: 85%;
+    }
+
+    .bid-info .auction-bid .bid-list li {
+        font-size: 19px;
+    }
+
+    .bid-info .auction-bid .bid-list li.higher-price {
+        font-size: 24px;
+    }
+
+    .bid-info .auction-bid .bid-list {
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+    }
+
+    .bid-info .auction-bid .owners-bid .owners-name {
+        font-size: 30px;
+    }
+
+    .bid-info .auction-bid .owners-bid .owners-price {
+        font-size: 29px;
+        /* padding: 4px 15px; */
+    }
+
+    .bid-info .auction-bid .timing-info h3 {
+        font-size: 16px;
+    }
+
+    .bid-info .auction-bid .timing-info h3 span {
+        font-size: 13px;
+    }
+
+    .bid-info .auction-bid .timing-info .bid-button {
+        font-size: 16px;
+        padding: 5px 6px;
+    }
+
+    footer .brand-logo img {
+        width: 200px;
+    }
+
+    footer p {
+        font-size: 11px;
+    }
+
+    footer .menu li {
+        font-size: 14px;
+    }
+
+    .details-info .list li {
+        font-size: 16px;
+        padding: 2px 0;
+    }
+
+    .vote .bid-info .auction-bid {
+        width: 80%;
+    }
+}
+
+@media (max-width: 640px) {
+    .vote .thumb-gallery .gallery li.round span {
+        font-size: 19px;
+        height: 52px;
+    }
+
+    .voting .round {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .vote .thumb-gallery .gallery li.round span {
+        font-size: 15px;
+        height: 42px;
+    }
+
+    .voting .round {
+        font-size: 14px;
+        padding: 30px 0;
+    }
+
+    .voting-img .number {
+        font-size: 16px;
+        padding: 4px;
+    }
+
+    .voting-img .name {
+        font-size: 16px;
+        line-height: 16px;
+    }
+
+    .voting-img .vote-btn {
+        font-size: 16px;
+    }
+
+    .bid-info .auction-bid .timing-info .bid-button {
+        padding: 3px 8px;
+    }
+
+    .bid-info .auction-bid .timing-info h3 {
+        font-family: "acumin-pro-extra-condensed", sans-serif;
+        font-size: 17px;
+        font-weight: 100;
+    }
+}
+
+h4.auction-status {
+    text-align: left;
+    font-family: 'acumin-pro-extra-condensed', sans-serif;
+    font-weight: 900;
+    font-size: 25px;
+}
+
+h4.auction-status.auction-open {
+    color: #3AB515;
+}
+
+h4.auction-status.auction-closed {
+    color: #ca1300;
+}
+
+h4.auction-status.auction-pending {
+    color: #888888;
+}
+
+h2.art-id {
+    font-size: 25px;
+    font-family: acumin-pro-extra-condensed, sans-serif;
+    font-weight: 600;
+}
+
+.owners-bid span {
+    float: right;
+}
+
+a.bid-control {
+    float: right;
+    margin-top: 5px;
+    color: #fff;
+    font-size: 22px;
+}
+
+a.bid-control.text-muted {
+    color: #999999;
+}
+
+.app_link {
+    text-align: center;
+}
+
+input.pixelControl {
+    width: 50px;
+}
+
+.welcome_user {
+    font-size: 15px;
+    font-family: acumin-pro-condensed, sans-serif;
+    font-weight: 900;
+}
+
+.welcome_message {
+    font-size: 15px;
+    font-family: acumin-pro-extra-condensed, sans-serif;
+    font-weight: 400;
+}

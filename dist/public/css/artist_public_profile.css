@@ -1,0 +1,177 @@
+.thumb-gallery {
+    float: left;
+    width: 100%;
+    margin-bottom: 40px;
+    margin-top:30px
+}
+
+.sec-head {
+    float: left;
+    width: 100%;
+    /* margin-bottom:5px */}
+
+.sec-head .img {
+    float: none;
+    display: inline-block;
+    vertical-align:middle
+}
+
+.sec-head h2 {
+    float: none;
+    display: inline-block;
+    vertical-align: middle;
+    color: #fff;
+    font-weight: 400;
+    font-family: acumin-pro-extra-condensed, sans-serif;
+    font-size: 29px;
+    margin:0
+}
+
+.following-text {
+    font-size: 15px;
+    padding: 0;
+    line-height: .5;
+    display: block;
+    font-family:acumin-pro-extra-condensed, sans-serif
+}
+
+.sec-head h2.event-eid-head {
+    font-size: 15px;
+    padding: 0;
+    line-height: 1.0;
+    display:block
+}
+
+.thumb-gallery img {
+    max-width:100%
+}
+
+.thumb-gallery .gallery {
+    float: none;
+    display: inline-block;
+    width: 100%;
+    vertical-align: top;
+    padding-left:0
+}
+
+.thumb-gallery .gallery li {
+    float: none;
+    display: inline-block;
+    width: 100%;
+    vertical-align: middle;
+    padding:0 5px
+}
+
+.nameWrapper {
+    display: block;
+    font-size: 36px;
+    font-family:acumin-pro-extra-condensed, sans-serif
+}
+
+.first_name {
+    font-weight: 500;
+    float:left
+}
+
+.last_name {
+    font-weight: 900;
+    float:left
+}
+
+.artist-text {
+    font-family: acumin-pro-extra-condensed, sans-serif;
+    font-weight: 600;
+    font-size:15px
+}
+
+.follow .follow-button {
+    font-family: acumin-pro-extra-condensed, sans-serif;
+    font-weight: 900;
+    background: #fff;
+    vertical-align: middle;
+    line-height: 1.4;
+    font-size:22px
+}
+
+.follow {
+    width: 56px;
+    color: #000;
+    text-align: center;
+    cursor: pointer;
+    float: left;
+    margin-left: 8px;
+    margin-top: 3px;
+    display:none
+}
+
+.follow.following {
+    margin-top: 0;
+    margin-left: 4px;
+    width: 24px;
+    display:block
+}
+
+.follow.not-following {
+    display:block;margin-top: 14px;
+}
+
+.follow.following img {
+    height:30px}
+
+.location {
+    font-family: acumin-pro-extra-condensed, sans-serif;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 26px;
+}
+
+.sec-head h2.event-head {
+    font-family: acumin-pro-extra-condensed, sans-serif;
+    font-weight: 500;
+    font-size: 22px;
+    /* margin-top: 7px; */
+}
+
+.event-list {
+    margin-top:10px
+}
+
+.from_bio {
+    font-weight:900
+}
+
+.selectedImageContext {
+    font-family: acumin-pro-extra-condensed, sans-serif;
+    font-weight: 500;
+    font-size: 19px;
+    margin-bottom: 34px;
+}
+
+.location.city {}
+
+.link {
+    text-decoration: underline
+}
+
+.event-head {
+    font-family: acumin-pro-extra-condensed, sans-serif;
+    font-size: 24px;
+    font-weight: bolder;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+.nameWrapper div.name_bucket {
+    line-height: 52px;
+    float: left;
+}
+
+.imagePrice {
+    font-family: acumin-pro-extra-condensed, sans-serif;
+    font-weight: 800;
+    display: block;
+}
+
+.imgContextText {
+    display: block;
+}

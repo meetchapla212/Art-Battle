@@ -1,0 +1,14 @@
+extends auction_layout
+block content
+    section.content(data-bind="attr:{style:'display:block'}" style="display: none")
+        section.container
+            // a(href=`/event/eventList`) Go to Voting
+            include active_artist_open
+            include auction_gallery
+            include auction/registrationForm
+block append scripts
+    script.
+       let token = "#{token}";
+       const artId = "#{artId}";
+       const phoneHash = "#{phoneHash}";
+    script(src=process.env.MP+'/js/auction.js?v='+process.env.BUILD_VERSION)

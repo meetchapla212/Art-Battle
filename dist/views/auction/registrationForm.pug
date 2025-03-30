@@ -1,0 +1,26 @@
+div.modal.fade(data-bind="modal:ShowEmailAndNamePopup")
+    div.modal-dialog
+        div.modal-content
+            div.modal-header
+                h4.modal-title.pull-left
+                    span.welcome_user(data-bind="text: `Welcome ${ActiveArtist() && ActiveArtist().UserName()}!`")
+                    br
+                    span.welcome_message To bid in the auction, please add:
+            div.modal-body
+                form
+                    .form-group
+                        label(for='inputEmail') Email address
+                        |
+                        input#inputEmail.form-control(type='email', placeholder='Email', data-bind="value: Email")
+                    .form-group
+                        label(for='inputName') Real Name (for purchase records)
+                        |
+                        input#inputName.form-control(type='text', placeholder='name', data-bind="value: Name")
+                    .form-group
+                        label(for='inputNickName') Public Nickname (to show on auction page)
+                        |
+                        input#inputNickName.form-control(type='text', placeholder='NickName', data-bind="value: NickName")
+                    //ko if:(MoreDetailMessage())
+                    div.alert(data-bind="text: MoreDetailMessage(), css: MoreDetailCss()")
+                    // /ko
+                    button.btn.btn-success(type='submit' style="padding: 2px 9px;" data-bind="click: (vm, e) => {submitMoreDetail(vm);e.stopPropagation();}") Send

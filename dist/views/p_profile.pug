@@ -1,0 +1,117 @@
+extends layout
+
+block content
+   section.message
+      section.container
+         section.col-md-8
+            section.mess-phn
+               h2 #{userInfo.NickName} [#{userInfo.PhoneNumber}]
+               span.email #{userInfo.FirstName} #{userInfo.LastName} (#{userInfo.Email})
+               button.btn.btn-xs.ladda-button(type='submit' data-style="zoom-in"
+                  style="width: 9%; float:right"
+                  data-bind="click: handleMessageStatusChange, buttonbusy: PeopleStatusUpdater.Busy, css: MessageStatusCss()" data-size="xs" )
+                  span.ladda-label(data-bind="html: MessageStatusMessage()" )
+               span.catagory
+                  i #{userInfo.IsArtist? 'Registered Artist': 'Registered User'}
+            form(method='POST')
+               label Message
+               textarea.form-control(placeholder='Message Test', rows='3',name='message', id='message')
+               input(type='hidden', name='registrationId', value=registrationId)
+               input(type='hidden', name='userPhoneNumber', value=phoneNumber)
+               br
+               select.form-control(name='Twiliophonenumber', id='Twiliophonenumber')
+                  option(value="0", selected='') Choose here
+                  each val in phoneNumberList
+                     if(val.phone === lastServerPhoneNumber)
+                        option(value=val.phone selected) #{val.phone + ' (' +val.label+ ')'}
+                     else
+                        option(value=val.phone ) #{val.phone + ' (' + val.label + ')'}
+                     
+               input.btn.btn-primary(type='submit', value='Send')
+               
+               each val in messageData
+                  if(val && val.Status === 0)
+                     p.float-left.w-100.mb-0.mt-3.text-left Received at #{val.ServerNumber}
+                     span.clearfix
+                     p.float-left.w-100.mb-0.text-left(style="font-size: 10px") #{val.createdAt}
+                     p.float-left.w-100.text-left #{val.Message}
+                  else if (val)
+                     p.float-left.w-100.mb-0.mt-3.text-right Sent from server: #{val.ServerNumber}
+                     p.float-left.w-100.mb-0.text-right(style="font-size: 10px") #{val.createdAt}
+                     p.float-left.w-100.text-right #{val.Message}
+
+              
+               
+            
+            section.events
+               h2 Events
+               each val in eventJoined
+                  p
+                     a(href=process.env.MP+"/event/"+val._id+"/results") #{val.Name} (#{val.From})
+               
+         section.col-md-4.right-side
+            
+            h2 Auction
+            ul.list
+               each val in auctionData
+                  li
+                     span.mt-3 #{val.createdAt}
+                     p
+                        if val.isHigherBid
+                           span &#128308; &nbsp;
+                           a(href=process.env.MP+"/a/" + val.ArtId)
+                              b $#{val.amount} on #{val.ArtId} #{val.artist_name}
+                        else
+                           span &#128307; &nbsp;
+                           a(href=process.env.MP+"/a/"+val.ArtId)
+                              b $#{val.amount} on #{val.ArtId} #{val.artist_name}
+         // ko if: Registration.Artist
+         section.col-md-4.right-side
+             button.btn.btn-primary(data-bind="click: () => OpenVideoPopup()") Add Video
+             h2 Videos
+             ul.list
+                // ko foreach: VideoUrls
+                li
+                  a(data-bind="{text: $data.Url, attr:{href: $data.Url()}}" target="_blank")
+                // /ko
+         section.col-md-4.right-side
+             h2 Arts
+             ul.list
+                each val in Arts
+                   li
+                        a(href=process.env.MP+"/a/"+val target="_blank")
+                           span #{val}
+         // /ko
+   // ko if: SelectedVideo
+   // Add Video modal
+   div.modal(data-bind="modal:OpenPopup")
+      div.modal-dialog
+         div.modal-content
+            div.modal-header
+               h4.modal-title Add Video URL
+            div.modal-body
+               form(data-bind="submit: () => {/*Vm.OpenPopup(false); */SelectedVideo().SaveMessage(undefined);SelectedVideo().Save();}")
+                  .form-group.required
+                     label.control-label(for='inputVideoUrl') Video URL
+                     input#inputVideoUrl.form-control(type='text' required data-bind="value: SelectedVideo().Url"
+                        placeholder="Video URL")
+                     span#helpBlock.help-block URL to embed in video player
+                  //ko if:(SelectedVideo().SaveMessage())
+                  .alert.fade.in(data-bind="css: SelectedVideo().SaveMessageCss")
+                     button.close(data-dismiss='alert' data-bind="click: () => SelectedVideo().SaveMessage(undefined)")
+                        i.glyphicon.glyphicon-remove
+                     div(data-bind="text: SelectedVideo().SaveMessage")
+                  // /ko
+                  div.btn.btn-danger(data-dismiss="modal" data-bind="click: (vm, e) => {$('.modal-backdrop').remove();OpenPopup(false);SelectedVideo().SaveMessage(undefined);}") Close
+                  span &nbsp;
+                  input.btn.btn-default(type='submit')
+   // end Add Video Modal
+   // /ko
+block append scripts
+   script.
+      //used in vm
+      const token = "#{token}";
+      const registrationId = "#{userInfo._id}";
+      const registration = JSON.parse('!{JSON.stringify(userInfo).replace(/[\/\(\)\']/g, "\\$&")}');
+      const isBlocked = #{parseInt(userInfo.MessageBlocked) === 1 ? 1 : 0}
+   script(src=process.env.MP+'/js/people.js?v='+process.env.BUILD_VERSION)

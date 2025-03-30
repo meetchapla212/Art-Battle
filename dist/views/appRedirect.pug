@@ -1,0 +1,18 @@
+block append scripts
+    script.
+        const obj = {
+            eventId: 'dummy',
+            flag: '',
+            flagPng: '',
+            openStatus: true,
+            openVoting: true,
+            statusText: 'open',
+            title: ''
+        }
+        document.addEventListener('DOMContentLoaded', (event) => {
+            //the event occurred
+            if (typeof Android !== 'undefined' && Android !== null) {
+                // @ts-ignore
+                Android.openRegistration(obj);
+            }
+        })

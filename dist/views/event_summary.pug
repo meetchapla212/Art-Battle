@@ -1,0 +1,28 @@
+extends ./voting_layout
+block content
+    section.event_summary.site-wrap(data-bind="beforeUnloadText: beforeUnloadPrompt")
+        section.container
+            section.col-xs-12
+                span.cath
+                    if(countryFlag)
+                        img(src=process.env.MP+"/images/countries/4x3/" + countryFlag width="24px")
+                    span &nbsp;&nbsp; #{title}
+                p.total_rounds !{Description}
+                each val in rounds
+                    h4.roundHead Round #{val.RoundNumber}
+                    .voting
+                        div.voting-list.no-camera.no-images
+                            each Contestant in val.Contestants
+                                if(Contestant.EaselNumber)
+                                    div.artist-container
+                                        span.easel_number #{Contestant.EaselNumber} &nbsp;&nbsp;&nbsp;
+                                        span.artist_gallery
+                                            span.artist_items
+                                                span.artist_name.gallery_item
+                                                    span
+                                                        span #{Contestant.Detail.Name.split(' ')[0]} &nbsp;
+                                                        span #{Contestant.Detail.Name.split(' ')[1]}
+                                .clearfix
+                span.logo
+                    a(href=process.env.MP+'#')
+                        img(width='98px' src=process.env.MP+'/images/ABVoteHead.svg')

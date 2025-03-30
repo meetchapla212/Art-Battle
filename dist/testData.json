@@ -1,0 +1,88 @@
+[
+    {
+        "Name": "Test Voting",
+        "Contestant": [
+            {
+                "_id": 11111,
+                "VoteKey": 1,
+                "Name": "Ryan",
+                "Votes": []
+            },
+            {
+                "_id": 22222,
+                "VoteKey": 2,
+                "Name": "Simon",
+                "Votes": []
+            },
+            {
+                "_id": 33333,
+                "VoteKey": 3,
+                "Name": "Athena",
+                "Votes": []
+            }
+        ],
+        "Rounds": [
+            {
+                "RoundNumber": 1,
+                "Contestants": [
+                    {
+                        "_id": 11111,
+                        "VoteKey": 1,
+                        "Name": "Ryan",
+                        "Votes": []
+                    },
+                    {
+                        "_id": 22222,
+                        "VoteKey": 2,
+                        "Name": "Simon",
+                        "Votes": []
+                    }
+                ]
+            },
+            {
+                "RoundNumber": 2,
+                "Contestants": [
+                    {
+                        "_id": 11111,
+                        "VoteKey": 1,
+                        "Name": "Ryan",
+                        "Votes": []
+                    },
+                    {
+                        "_id": 33333,
+                        "VoteKey": 3,
+                        "Name": "Athena",
+                        "Votes": []
+                    }
+                ]
+            }
+        ],
+        "CurrentRound": {
+            "RoundNumber": 2,
+            "Contestants": [
+                {
+                    "_id": 11111,
+                    "VoteKey": 1,
+                    "Name": "Ryan",
+                    "Votes": []
+                },
+                {
+                    "_id": 33333,
+                    "VoteKey": 3,
+                    "Name": "Athena",
+                    "Votes": []
+                }
+            ]
+        },
+        "PhoneNumber": "16479526483",
+        "Enabled": true,
+        "Registrations": [
+            {
+                "FirstName": "Ryan",
+                "LastName": "Smythe",
+                "PhoneNumber": "5552221111",
+                "Email": "ryry@fakemail.com"
+            }
+        ]
+    }
+]

@@ -1,0 +1,92 @@
+doctype html
+html
+    head
+        meta(charset='utf-8')
+        meta(http-equiv='X-UA-Compatible', content='IE=edge')
+        meta(name='viewport', content='width=device-width, initial-scale=1.0')
+        meta(name='theme-color' content='#4DA5F4')
+        meta(name='csrf-token', content=_csrf)
+        title #{title} - Artist Profile
+        link(rel='shortcut icon', href=process.env.MP+'/images/favicon.ico', type='image/x-icon')
+        link(rel='icon', href=process.env.MP+'/images/favicon.ico', type='image/x-icon')
+        link(rel='stylesheet', href=process.env.MP+'/css/bootstrap.css')
+        link(rel="stylesheet" href="https://use.typekit.net/kot5qyf.css")
+        link(rel='stylesheet', href=process.env.MP+'/css/artist_public_profile.css?v='+process.env.BUILD_VERSION)
+        script.
+            var mp = '#{process.env.MP}';
+
+    body
+        #koroot.container
+            block content
+                .artist-profile
+                    .container
+                        .row(style="margin-top: 22px;")
+                            .col-xs-12
+                                div.following-text(data-bind="text: FollowingText")
+                        .row(style="margin-top: 27px;")
+                            .col-xs-12
+                                div.nameWrapper
+                                    div.name_bucket
+                                        div.first_name(data-bind="text: ParsedName().firstName")
+                                        div.last_name(data-bind="html: (ParsedName().firstName ? '&nbsp;': '') + ParsedName().lastName")
+                                    div.follow(data-bind="click: ToggleFollow, css: FollowingCss, visible: ShowFollowingButton")
+                                        // ko if: IsFollowing() === false
+                                        div.follow-button FOLLOW
+                                        // /ko
+                                        // ko if: IsFollowing() === true
+                                        div.row
+                                            img(src="data:image/png;base64,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" alt="unfollow")
+                                        // /ko
+                                    div.clearfix
+                                div.location.city(data-bind="text: CityText" style="margin-top: 0px;")
+                                // ko if: AdminBio && AdminBio().length > 0
+                                div.location(style="margin-top: 11px;")
+                                    span.from_bio From AB:
+                                    span &nbsp;
+                                    span(data-bind="text: AdminBio")
+                                // /ko
+                                // ko if: Bio&& Bio().length > 0
+                                div.location(style="margin-top: 11px;")
+                                    span.from_bio(data-bind="text: `From ${ParsedName().firstName}: `")
+                                    span &nbsp;
+                                    span(data-bind="text: Bio")
+                                // /ko
+                                div.location(data-bind="text: AdminNotes")
+                                section.event-list
+                                    // ko if: Events().length > 0
+                                    h4.event-head Events
+                                    // /ko
+                                    // ko foreach: Events
+                                    section.sec-head
+                                        // ko if: Country
+                                        // span.img
+                                            img(data-bind="attr: {src: '/images/countries/4x3/'+Country().country_image}")
+                                        // /ko
+                                        // h2.event-head(data-bind="html: (Country() ? '&nbsp;' : '') + NameWithoutArtId() + WinnerText()")
+                                        h2.event-head(data-bind="html: NameWithoutArtId() + WinnerText(), click: OpenEventLink, css: LinkCss")
+                                        // ko if: EID
+                                        h2.event-eid-head(data-bind="text: EventDateEID")
+                                        // /ko
+                                    // /ko
+                                section.thumb-gallery
+                                    section.sec-head
+                                        ul.gallery
+                                            // ko foreach: Images
+                                            li
+                                                img(data-bind="css: $data.clickUrl && 'link', attr: {src: $data.url}, click: $root.OpenProductUrl.bind($root, $data)")
+                                                br
+                                                div.selectedImageContext(data-bind="css: $data.clickUrl && 'link', click: $root.OpenProductUrl.bind($root, $data)")
+                                                    span.imgContextText(data-bind="text: `${$data.imageContext}`")
+                                                    span.imagePrice(data-bind="text: `${$data.price || ''}`")
+                                            // /ko
+        block scripts
+            script.
+               // used in vm
+               const token = "#{token}";
+               const artistId    = "#{artistId}";
+               const artistProfile = JSON.parse('!{artistProfileJson.replace(/[\/\(\)\']/g, "\\$&")}');
+               const phoneHash = "#{phoneHash}";
+            script(src = process.env.MP+'/js/lib/jquery-3.2.1.js')
+            script(src = process.env.MP+'/js/lib/bootstrap.js')
+            script(src = process.env.MP+'/js/lib/knockout-3.4.2.debug.js')
+            script(src=process.env.MP+'/js/artist_public_profile.js?v='+process.env.BUILD_VERSION)

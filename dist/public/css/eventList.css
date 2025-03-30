@@ -1,0 +1,1027 @@
+html {
+    margin: 0 auto
+}
+
+body {
+    background-color: #000
+}
+
+@media(max-width: 768px) {
+    .voting .voting-list,body,.eventItem,.overlay {
+        width:100%!important
+    }
+
+    .eventItem,.overlay {
+        height: auto!important
+    }
+
+    .eventItem.expanded {
+        height: auto!important;
+    }
+
+    .left {
+        width: 66%!important
+    }
+}
+
+@media(max-width: 320px) {
+    .voting .voting-list,body,.eventItem,.overlay {
+        width:100%!important
+    }
+
+    .eventItem,.overlay {
+        height: auto!important
+    }
+
+    .eventItem.expanded {
+        height: auto!important;
+    }
+
+    .left {
+        width: 60%!important
+    }
+}
+
+@media only screen and (max-width: 414px) and(max-height:896px) and(-webkit-device-pixel-ratio:3) {
+    .voting .voting-list,body,.eventItem,.overlay {
+        width:100%!important
+    }
+
+    .eventItem,.overlay {
+        height: auto!important
+    }
+
+    .eventItem.expanded {
+        height: auto!important;
+    }
+
+    .left {
+        width: 66%!important
+    }
+}
+
+@media only screen and (max-width: 375px) and(max-height:812px) and(-webkit-device-pixel-ratio:3) {
+    .voting .voting-list,body,.eventItem,.overlay {
+        width:100%!important
+    }
+
+    .eventItem,.overlay {
+        height: auto!important
+    }
+
+    .eventItem.expanded {
+        height: auto!important;
+    }
+
+    .left {
+        width: 66%!important
+    }
+}
+
+@media only screen and (max-width: 414px) and(min-height:896px) and(-webkit-device-pixel-ratio:2) {
+    .voting .voting-list,body,.eventItem,.overlay {
+        width:100%!important
+    }
+
+    .eventItem,.overlay {
+        height: auto!important
+    }
+
+    .eventItem.expanded {
+        height: auto!important;
+    }
+
+    .left {
+        width: 66%!important
+    }
+}
+
+.alert-artist {
+    font-family: acumin-pro-extra-condensed,sans-serif;
+    text-align: left
+}
+
+.alert-artist h4 {
+    font-family: acumin-pro-extra-condensed,sans-serif;
+    text-align: center
+}
+
+.auction_link {
+    font-size: 16px;
+    color: #fff;
+    margin-top: 2px;
+    text-decoration: underline
+}
+
+.winner_in_tile {
+    font-size: 17px;
+    display: table-footer-group;
+    line-height: 30px;
+    width: 100%
+}
+
+.winner-img {
+    height: 117px
+}
+
+.auction_status_point.open-auc {
+    color: #19e019
+}
+
+.auction_status_point.closed-auc {
+    color: #a30815
+}
+
+.auction_status_point.no-bids {
+    color: #fff
+}
+
+.eventItem.expanded {
+    margin-bottom: 0!important;
+    background: #262626;
+    height: auto;
+}
+
+.eventListCat {
+    font-family: acumin-pro-condensed,sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    font-style: normal;
+    text-decoration: underline
+}
+
+.eventItem {
+    border-color: #707070;
+    font-family: acumin-pro-extra-condensed,sans-serif;
+    font-size: 25px;
+    font-weight: 600;
+    cursor: pointer;
+    line-height: 2;
+    background-color: #262626;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    display: block;
+    height: 135px
+}
+
+.statusText {
+    font-family: acumin-pro-condensed,sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    font-style: italic;
+    padding: 0 5px 2px
+}
+
+.eventTitle {
+    font-family: acumin-pro-extra-condensed,sans-serif;
+    font-size: 29px;
+    font-weight: 400;
+    width: 700px
+}
+
+.description {
+    font-family: acumin-pro-condensed,sans-serif;
+    font-size: 15px;
+    font-weight: 100;
+    display: table-row;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    overflow: hidden;
+    max-height: 1.4em;
+    line-height: 1.1em;
+    padding-bottom: 20px
+}
+
+.expanded .description {
+    max-height: 100%
+}
+
+.left {
+    display: table;
+    float: left;
+    line-height: 1;
+    margin-left: 7px;
+    text-align: left;
+    width: 88%;
+    height: 135px
+}
+
+.right {
+    display: block;
+    float: right;
+    line-height: 1.3;
+    text-align: right;
+    margin-right: 7px;
+    margin-top: 6px
+}
+
+.datetime-range {
+    font-family: acumin-pro-extra-condensed,serif;
+    font-size: 14px;
+    font-weight: 600
+}
+
+.venue {
+    font-family: acumin-pro-extra-condensed,serif;
+    font-size: 16px;
+    font-weight: 400
+}
+
+.price {
+    font-family: acumin-pro-extra-condensed,serif;
+    font-size: 14px;
+    font-weight: 400
+}
+
+.numVotes {
+    font-family: acumin-pro-condensed,serif;
+    font-size: 16px;
+    font-weight: 100;
+    font-style: italic
+}
+
+.overlay .act {
+    font-family: acumin-pro-condensed,serif;
+    font-style: italic;
+    font-size: 22px;
+    padding-bottom: 6px
+}
+
+.overlay .vote-act {
+    background: #43d119;
+    border: #43d119;
+    color: #fff;
+    display: flex;
+    align-items: center
+}
+
+.overlay .view-act {
+    background: #fff;
+    color: #000;
+    border: #fff;
+    margin-left: 30px;
+    display: FLEX;
+    align-items: center
+}
+
+.overlay {
+    background: rgba(38,38,38,.79);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    display: none;
+    height: 135px;
+    width: 100%
+}
+
+.act-container {
+    margin: 0 auto;
+    width: 32%;
+    position: relative;
+    top: 37%;
+    display: flex;
+    flex-direction: row;
+    align-items: center
+}
+
+img {
+    max-width: 100%
+}
+
+.site-wrap {
+    float: none;
+    display: inline-block;
+    padding-top: 40px;
+    color: #fff
+}
+
+.logo {
+    float: left;
+    width: 100%;
+    margin-bottom: 20px;
+    padding-top: 40px
+}
+
+h4 {
+    float: left;
+    width: 100%;
+    text-align: center
+}
+
+h4 span {
+    color: #00a500;
+    font-family: acumin-pro,serif;
+    font-weight: 700
+}
+
+span.cath {
+    float: left;
+    width: 100%;
+    font-size: 30px;
+    font-weight: 400;
+    font-family: acumin-pro-condensed,serif
+}
+
+.total_rounds {
+    float: left;
+    width: 100%;
+    font-size: 18px;
+    color: #fff;
+    padding: 10px 0;
+    font-family: acumin-pro-condensed,serif;
+    font-weight: 700;
+    font-style: italic
+}
+
+.total_rounds p {
+    display: block;
+    margin: 0 auto;
+    width: 90%
+}
+
+.voting {
+    float: left;
+    width: 100%;
+    text-align: center
+}
+
+.voting .voting-list {
+    float: none;
+    text-align: left;
+    font-size: 27px;
+    position: relative;
+    display: block;
+    margin: 10px auto;
+    width: 320px
+}
+
+.voting .voting-list:after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 1px;
+    background: #fff;
+    left: 28px;
+    opacity: .3
+}
+
+.voting .voting-list span.easel_number {
+    float: left;
+    width: 7.2%;
+    padding-left: 6px;
+    font-family: acumin-pro-extra-condensed,sans-serif;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+
+.voting .voting-list span.artist_name {
+    float: left;
+    font-family: acumin-pro-extra-condensed,serif;
+    word-break: break-word;
+    word-wrap: break-word;
+    width: 120px;
+    font-weight: 700;
+    display: flex;
+    flex-wrap: wrap;
+    height: 110px;
+    align-items: center;
+    text-align: left
+}
+
+.voting .voting-list span.artist_name span span:first-child {
+    font-weight: 200
+}
+
+.voting h3 {
+    float: left;
+    width: 100%;
+    font-size: 15px;
+    margin-bottom: 20px;
+    font-style: italic;
+    font-weight: 100;
+    margin-top: 0
+}
+
+.voting .form-list {
+    float: left;
+    width: 100%;
+    list-style: none;
+    padding-left: 0
+}
+
+.voting .form-list div {
+    width: 152px;
+    text-align: center;
+    margin: 0 auto
+}
+
+.voting .form-list div input[type=text] {
+    width: 82px;
+    height: 46px;
+    color: #000;
+    padding: 0 15px;
+    font-size: 17px
+}
+
+.voting .form-list div button[type=submit] {
+    width: 70px;
+    color: #fff;
+    height: 46px;
+    border: 0;
+    font-size: 17px;
+    vertical-align: middle
+}
+
+.voting .success-message {
+    font-size: 18px
+}
+
+.voting .message-tag {
+    float: left;
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    display: none
+}
+
+.inline {
+    display: inline!important
+}
+
+.voting p {
+    font-size: 15px
+}
+
+.list {
+    float: left;
+    width: 100%;
+    list-style: none;
+    text-align: center;
+    padding-left: 0
+}
+
+.list li {
+    float: left;
+    width: 100%;
+    font-size: 15px;
+    color: #fff
+}
+
+@media(max-width: 767px) {
+    .site-wrap {
+        width:100%
+    }
+}
+
+div.artist-container {
+    /* padding-top: 6px; */
+    padding-bottom: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    background: #262626;
+}
+
+.artist_items {
+    display: flex;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch
+}
+
+.artist_gallery {
+    float: left;
+    z-index: 1;
+    display: flex;
+    width: 99vw;
+    -webkit-overflow-scrolling: touch;
+    overflow-y: hidden;
+    overflow-x: auto;
+    flex-wrap: nowrap
+}
+
+.artist_gallery .gallery_item:nth-child(2) {
+    margin-left: 0!important
+}
+
+.artist_gallery .gallery_item {
+    display: flex;
+    height: 124px;
+    width: 78px;
+    float: left;
+    flex: 0 0 auto;
+    text-align: left;
+    background: #fff;
+    margin-left: 6px
+}
+
+.cameraButton {
+    display: inline-block;
+    padding: .5em;
+    background: #111 url('/a/images/Add Camera-6@2x.png') no-repeat center;
+    background-size: 28px
+}
+
+.cameraButton:active {
+    border-color: #ccc #eee #eee #ccc
+}
+
+.cameraInput[accept*=camera] {
+    display: block;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    cursor: pointer;
+    width: 0;
+    height: 0
+}
+
+.artist_gallery::-webkit-scrollbar {
+    width: 5px;
+    background-color: #f8bbd0;
+    height: 5px;
+    display: none
+}
+
+.artist_gallery {
+    -ms-overflow-style: none;
+//IE10+scrollbar-width: none;
+//Firefox}
+
+.artist_gallery::-webkit-scrollbar-track {
+    -webkit-box-shadow:inset 0 0 6px #1d1b1c;
+    border-radius: 10px;
+    background-color: #080808;
+    border-left: 3px solid #fff;
+    border-right: 3px solid #fff
+}
+
+.artist_gallery::-webkit-scrollbar-thumb {
+    border-radius: 20px;
+    -webkit-box-shadow: inset 0 0 px #ad1457;
+    background-color: #e2dcde
+}
+
+.zeroRightLeftPad {
+    padding-left: 0;
+    padding-right: 0
+}
+
+.container {
+    padding-left: 2px;
+    padding-right: 2px
+}
+
+@media(min-width: 640px) {
+    .voting .voting-list {
+        width:640px
+    }
+}
+
+@media(min-width: 411px) {
+    .voting .voting-list {
+        width:411px
+    }
+}
+
+@media(min-width: 320px) {
+    .voting .voting-list {
+        width:320px
+    }
+}
+
+@media(min-width: 375px) {
+    .voting .voting-list {
+        width:375px
+    }
+}
+
+span.easel-event-wrapper {
+    margin-top: 6px;
+    width: 100%;
+    display: block
+}
+
+.round-live span.easel-event-wrapper {
+    margin-top: 0
+}
+
+span.round_event {
+    font-family: acumin-pro-extra-condensed,serif;
+    font-weight: 600;
+    font-size: 17px;
+    max-width: 24px;
+    word-break: break-word;
+    /* white-space:nowrap; */
+    text-overflow: ellipsis;
+}
+
+span.round_number {
+    font-family: acumin-pro-extra-condensed,serif;
+    font-weight: 800;
+    font-size: 26px
+}
+
+.gallery_item.easel_main {
+    width: 144px!important;
+    background: #000!important;
+    margin-left: 0!important;
+    padding-left: 6px;
+    height: 176px
+}
+
+progress-bar {
+    position: fixed;
+    bottom: -20px;
+    left: 49.5%;
+    margin-left: -50%;
+    width: 100%;
+    z-index: 1
+}
+
+.artist-container.active {
+    height: 303px;
+    display: flex;
+    clear: both
+}
+
+.artist-container.active span.artist_name {
+    height: 303px
+}
+
+.artist-container.active .cameraButton {
+    display: none
+}
+
+.artist-container.round-finished span.easel_number {
+    background: url(/a/images/checkbox.svg) no-repeat center;
+    width: 26px;
+    -webkit-overflow-scrolling: touch;
+    display: block;
+    height: 21px;
+    margin: 0;
+    float: right;
+    position: relative;
+    left: 113px;
+    top: 5px
+}
+
+.artist-container.active .gallery_item {
+    height: 303px;
+    width: 193px;
+    background: #fff;
+    margin-left: 5px
+}
+
+.voting .modal-content {
+    background: #fff
+}
+
+.voting .modal-content span.icon {
+    display: block
+}
+
+.site-wrap .modal-content {
+    color: #000
+}
+
+.site-wrap .modal-content span.heading1 {
+    font-size: 20px;
+    font-family: acumin-pro-condensed,serif;
+    font-style: italic;
+    display: block;
+    color: #000;
+    font-weight: 800
+}
+
+.site-wrap .modal-content span.heading2 {
+    font-size: 16px;
+    font-family: acumin-pro-condensed,serif;
+    display: block;
+    color: #000;
+    font-weight: 800
+}
+
+.site-wrap .modal-content span.heading2.light {
+    font-family: acumin-pro-condensed,serif;
+    font-style: normal;
+    font-weight: 600
+}
+
+.site-wrap .modal-content span.heading2.text-italic {
+    font-style: italic
+}
+
+.site-wrap .modal-content ul {
+    font-size: 16px;
+    font-family: acumin-pro-condensed,serif;
+    font-weight: 400;
+    list-style-type: none;
+    display: block;
+    margin: 0;
+    padding: 0
+}
+
+.site-wrap .modal-content span.heading2.extra-light {
+    font-family: acumin-pro-condensed,serif;
+    font-style: normal;
+    font-weight: 200
+}
+
+.light20 {
+    font-family: acumin-pro-condensed,serif;
+    font-style: normal;
+    font-weight: 400
+}
+
+.bold20 {
+    font-family: acumin-pro-condensed,serif;
+    font-style: normal;
+    font-weight: 600
+}
+
+.bold-italic-36 {
+    font-family: acumin-pro-condensed-black,serif;
+    font-style: italic;
+    font-weight: 600;
+    font-size: 36px
+}
+
+.semi-bold-italic-20 {
+    font-family: acumin-pro-condensed,serif;
+    font-style: italic;
+    font-weight: 600;
+    font-size: 20px
+}
+
+.modal-anchor {
+    text-align: center
+}
+
+.modal-anchor a {
+    color: #000;
+    cursor: pointer
+}
+
+.modal-okay {
+    display: block;
+    width: 99px;
+    padding: 4px;
+    border: 1px solid;
+    margin: 0 auto
+}
+
+.modal-okay span {
+    vertical-align: middle;
+    display: block;
+    margin-top: 3px
+}
+
+.modal {
+    text-align: center;
+    padding: 0!important
+}
+
+.modal:before {
+    content: '';
+    height: 100%;
+    vertical-align: middle;
+    margin-right: -4px
+}
+
+.modal-dialog {
+    text-align: left;
+    vertical-align: middle
+}
+
+.voting .voting-list.no-camera.no-images .artist-container .artist_gallery {
+    width: auto
+}
+
+.voting .voting-list.no-camera.no-images .artist-container span.artist_name {
+    height: auto;
+    width: auto;
+    margin-left: 13px
+}
+
+.voting .voting-list.no-camera.no-images .artist-container {
+    margin: 0 auto;
+    width: 240px;
+    text-align: center;
+    display: block
+}
+
+.voting .voting-list.no-camera.no-images .artist-container span.artist_gallery {
+    margin-left: 8px
+}
+
+.voting .voting-list.no-camera.no-images {
+    width: 240px
+}
+
+h4.roundHead {
+    font-size: 31px;
+    font-weight: 800;
+    font-family: acumin-pro-condensed,sans-serif;
+    text-decoration: underline
+}
+
+.event_summary .voting .voting-list span.easel_number {
+    width: auto
+}
+
+.done {
+    font-size: 26px;
+    font-family: acumin-pro-condensed,sans-serif;
+    font-weight: 800;
+    color: #a39600
+}
+
+.round {
+    font-family: acumin-pro-condensed,sans-serif;
+    color: #fff;
+    font-size: 26px;
+    font-weight: 300
+}
+
+.soon {
+    color: #3498db;
+    font-family: acumin-pro-condensed,sans-serif;
+    font-size: 26px;
+    font-weight: 800
+}
+
+.open {
+    color: #00a30d;
+    font-family: acumin-pro-condensed,sans-serif;
+    font-size: 26px;
+    font-weight: 800
+}
+
+.roundHistory {
+    text-align: left;
+    display: block;
+    margin: 0 auto;
+    width: 90%
+}
+
+.activeRound {
+    text-decoration-color: #fff;
+    text-decoration: underline;
+    color: #fff
+}
+
+.roundHistory a:hover {
+    color: #fff;
+    text-decoration: underline;
+    text-decoration-color: #fff
+}
+
+.roundHistory div {
+    cursor: pointer
+}
+
+.first_name {
+    font-weight: 200
+}
+
+.last_name {
+    font-weight: 700
+}
+
+.nameWrapper {
+    display: block;
+    font-size: 16px;
+    font-family: acumin-pro-extra-condensed,serif;
+    max-width: 99%;
+    word-break: break-word;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden
+}
+
+.active .nameWrapper .name_bucket {
+    text-decoration: underline;
+}
+
+.artist-container.voting-enabled.active {
+    height: 408px
+}
+
+.active .vote-button {
+    display: block;
+    margin-right: 6px;
+    margin-top: 15px;
+    border: none
+}
+
+.vote-button {
+    display: none;
+    float: right;
+    padding: 1px;
+    line-height: 1;
+    vertical-align: top;
+    border-top: 1px solid #464545
+}
+
+.vote-button button {
+    width: 84px;
+    padding: 2px
+}
+
+.gallery_item_vote .nameWrapper {
+    float: left;
+    font-size: 22px;
+    margin-left: 5px;
+    line-height: 19px;
+    height: 82px
+}
+
+.active .gallery_item_vote .nameWrapper {
+    max-width: 100px
+}
+
+.artist-container.active .gallery_item.easel_main {
+    height: 355px
+}
+
+.view-auction {
+    width: 350px;
+    margin: 50px auto 0
+}
+
+.view-auction .sponsor-text {
+    font-style: italic;
+    font-family: acumin-pro-condensed,serif;
+    font-weight: 600;
+    font-size: 19px;
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    width: 350px
+}
+
+.view-auction img {
+    max-width: 350px
+}
+
+span.eventId {
+    font-size: 13px
+}
+
+.build_version {
+    float: right;
+    font-size: 6px;
+    display: block;
+    clear: both
+}
+
+.left img {
+    margin-bottom: 9px
+}
+
+#loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url(/a/images/loader.gif) #000 no-repeat center;
+    opacity: .75;
+    z-index: 2
+}
+
+.vote-button.voted {
+    margin-top: 1px;
+    font-size: 16px;
+    font-family: acumin-pro-extra-condensed,serif
+}
+
+.vote-button.voted a {
+    color: #fff
+}
+
+span.winner_head {
+    font-family: acumin-pro-condensed,sans-serif;
+    font-weight: 100;
+    font-size: 14px
+}
+
+.switch-wrapper {
+    width: 250px;
+    margin: 13px auto 20px;
+    height: 39px;
+}
+
+.switch-wrapper div {
+    float:left;
+    margin-left: 5px;
+}
+
+.switch-wrapper img {
+    width: 120px;
+}

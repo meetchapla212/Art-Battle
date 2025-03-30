@@ -1,0 +1,29 @@
+{
+  "Version": "0.0.1",
+  "Title": "Prototype Battle!",
+  "Description": "This is the first battle between video artists. Thank you for testing with us, it will be a very exciting next step!",
+  "AssetCount": 8,
+  "Assets": [
+    {
+      "ID": 902,
+      "Position": 1,
+      "Title": "Artist Sammy Jones",
+      "Subtitle": "AB1325-1-1",
+      "Type": "Video",
+      "URL": "http://stream.artbattle.com/streams/mp4/9127_10-May-19_17-48.mp4",
+      "StartVoteCount": 201,
+      "VoteURLEndpoint": "http://vr.artbattle.com/v/rewio2i2jfdnnfd"
+    },
+    {
+      "ID": 832,
+      "Position": 2,
+      "Title": "Jack Black",
+      "Subtitle": "AB3325-3-1",
+      "Type": "Video",
+      "URL": "http://stream.artbattle.com/streams/mp4/9127_10-May-19_17-48.mp4",
+      "StartVoteCount": 102,
+      "VoteURLEndpoint": "http://vr.artbattle.com/v/rewio2i2jfdnnfd"
+    }
+  ],
+  "EndNotes": "This is the end of the test. Thank you very much for joining us here today."
+}

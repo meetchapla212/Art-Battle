@@ -1,0 +1,155 @@
+extends layout
+
+block content
+    .page-header
+        .row
+            .col-sm-5
+                h1 #{EventName}&nbsp;&nbsp;
+                    if(countryFlag)
+                        img(src=process.env.MP+"/images/countries/4x3/"+countryFlag width="39px")
+        .row
+            .col-sm-offset-6.col-sm-3
+                a(href=process.env.MP+editPhotoLink) Edit photos
+                if(voteLink.length > 0)
+                    h5
+                        a(href=process.env.MP+voteLink + '/upload') Take photos of the event
+                h5
+                    a(href=`${process.env.MP}${registerUserLink}`) Register voters in the event
+                h4.text-info(data-bind="text: 'Registered at door: ' + DoorUsersCount() + '(' + AppUsersPercent() + '% app)'")
+                h6.text-info(data-bind="text: 'Registered online: '+ OnlineUsersCount() +' (' + OnlineTopUsersPercent() + '% over 1.4x)'")
+                div
+                    button.btn.btn-xs.ladda-button(type='submit' data-style="zoom-in"
+                        data-bind="click: AutoClose, buttonbusy: AutoCloseUpdater.Busy, css: AutoCloseAuctionCss()" data-size="xs" )
+                        span.ladda-label(data-bind="html: AutoCloseMessage()? AutoCloseMessage(): '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'" )
+                h6.text-info(data-bind="text: AutoCloseTime")
+        .row
+            .col-sm-8
+                hr.highlight
+    .clearfix
+        .row
+            .col-sm-8
+                // ko foreach: RoundsResults()
+                .panel(data-bind="css: { 'panel-success' : IsCurrentRound, 'panel-default' : IsFinished, 'panel-primary' : !IsCurrentRound && !IsFinished }")
+                    .row
+                        .col-sm-offset-1.col-sm-10
+                            h3
+                                span(data-bind="text: 'Voting results for Round ' + RoundNumber, css: { 'text-success' : IsCurrentRound }")
+                                span.label.label-success.pull-right(data-bind="if: IsCurrentRound") Active
+                                span.label.label-default.pull-right(data-bind="if: IsFinished") Finished
+                    .row
+                        .col-sm-offset-1.col-sm-10
+                            ul.nav.nav-tabs
+                                li.nav-item.active
+                                    a.nav-link.active.show(data-toggle="tab", data-bind="attr: {href: '#voting'+ RoundNumber}", aria-expanded="true") Voting
+                                li.nav-itemActive
+                                    a.nav-link(data-toggle="tab", data-bind="attr: {href: '#auction'+ RoundNumber}") Auction
+                                if(user && !user.IsEventAdmin && user.isAdmin)
+                                    div.btn.btn-xs.btn-info.ladda-button.pull-right(data-bind="click: $root.sendAuctionClosingNotice.bind($root, RoundNumber)") Send CLOSING notice
+                                if(user && (user.IsEventAdmin || user.isAdmin))
+                                    div.clearfix
+                                    // ko if: RoundNumber === 3
+                                    div.btn.btn-xs.ladda-button.pull-right(data-bind="css: $root.CopyWinnerCss(), buttonbusy: CopyWinnerUpdater.Busy, click: $root.copyWinner.bind($root, RoundNumber), text: $root.CopyWinnerMessage")
+                                    // /ko
+                            .tab-content
+                                div.tab-pane.active.in.fade(data-bind="attr: {id: 'voting'+ RoundNumber}")
+                                    include results/voting.pug
+                                div.tab-pane.fade(data-bind="attr: {id: 'auction'+ RoundNumber}")
+                                    include results/auction.pug
+                    .row
+                        .col-sm-offset-7.col-sm-4
+                            span.vote-stats.pull-right(data-bind="text: 'Votes :'+ TotalVotes")
+                            .clearfix
+                            span.vote-stats.pull-right(data-bind="text: '+ exp: ' + Experience + '%'")
+                            .clearfix
+                            span.vote-stats.pull-right(data-bind="text: 'value: ' + Math.round(VotesCast*10)/10")
+                            .clearfix
+                            br
+                // /ko
+    .clearfix
+        .row
+            if (user && (user.isAdmin || user.IsEventAdmin))
+                .col-sm-8
+                    .panel-group(role="tablist" id="actions")
+                        .panel.panel-default
+                            .panel-heading(role="tab" id="actionsHeading")
+                                h4.panel-title
+                                    a.collapsed(data-bind="click: $root.toggleHandle" role="button" data-toggle="collapse" data-parent="#actions" href=process.env.MP+"#actionsPanel" aria-expanded="false" aria-controls="actionsPanel") Actions
+                                        i.more-less.glyphicon.glyphicon-plus
+                                .panel-collapse.collapse(id="actionsPanel" role="tabpanel" aria-labelledby="headingOne" aria-expanded="false")
+                                    .panel-body
+                                        .panel
+                                            div.send_auction_link
+                                                button.btn.btn-xs.ladda-button(type='submit' data-style="zoom-in"
+                                                    data-bind="click: (vm, e) => {$root.sendAuctionLink(); e.preventDefault();}, css: $root.SendAuctionLinkCSS(), buttonbusy: WinnerUpdater.Busy" data-size="xs" )
+                                                    span.ladda-label(data-bind="html: SendAuctionLinkMessage()" )
+                                                span Voting/Bidding Link
+                                            div.send_auction_link
+                                                button.btn.btn-xs.ladda-button(type='submit' data-style="zoom-in"
+                                                    data-bind="click: (vm, e) => {$root.sendDataToSummarySheet(); e.preventDefault();}, css: $root.SendSummarySheetCSS(), buttonbusy: WinnerUpdater.Busy" data-size="xs" )
+                                                    span.ladda-label(data-bind="html: SendDataToSummarySheetMessage()" )
+                                                span Data to summary sheet
+                                            div.send_auction_link
+                                                button.btn.btn-xs.ladda-button(type='submit' data-style="zoom-in"
+                                                    data-bind="click: (vm, e) => {$root.sendShortAuctionLink(); e.preventDefault();}, css: $root.SendShortAuctionLinkCSS(), buttonbusy: WinnerUpdater.Busy" data-size="xs" )
+                                                    span.ladda-label(data-bind="html: SendShortAuctionLinkMessage()" )
+                                                span Short Auction Link
+                                            if(voteLink.length > 0)
+                                                div.send_auction_link
+                                                    a.btn.btn-xs.ladda-button.btn-success(type='submit' data-style="zoom-in"
+                                                        href=`${voteLink}/upload` data-size="xs" )
+                                                        span.ladda-label Take Photos
+                                                    span Click and upload photos
+            .col-sm-8
+                .panel-group(role="tablist" aria-multiselectable="true" id ="logs")
+                    .panel.panel-default
+                        .panel-heading(role="tab" id="logsHeading")
+                            h4.panel-title
+                                a.collapsed(data-bind='click: $root.toggleHandle' role="button" data-toggle="collapse" data-parent="#statistics" href=process.env.MP+"#logsPanel" aria-expanded="false" aria-controls="logsPanel") Log
+                                    i.more-less.glyphicon.glyphicon-plus
+                        .panel-collapse.collapse(id="logsPanel" role="tabpanel" aria-labelledby="headingOne" aria-expanded="false")
+                            .panel-body
+                                .panel
+                                    table.table
+                                        thead
+                                            th.col-sm-1 Date
+                                            th.col-sm-offset-1.col-sm-4 Message
+                                        tbody
+                                            // ko foreach: Logs
+                                            tr
+                                                td.small_font(data-bind="text: new Date(CreatedDate).toLocaleString()")
+                                                td
+                                                    pre.log_message(data-bind="text: Message")
+                                            // /ko
+    if (user && user.isAdmin)
+    .clearfix
+        .row
+            .col-sm-8
+                .panel-group(role="tablist" aria-multiselectable="true" id ="statistics")
+                    .panel.panel-default
+                        .panel-heading(role="tab" id="statsHeading")
+                            h4.panel-title
+                                a.collapsed(data-bind='click: $root.toggleHandle' role="button" data-toggle="collapse" data-parent="#statistics" href=process.env.MP+"#statsPanel" aria-expanded="false" aria-controls="statsPanel") Statistics
+                                    i.more-less.glyphicon.glyphicon-plus
+                        .panel-collapse.collapse(id="statsPanel" role="tabpanel" aria-labelledby="headingOne" aria-expanded="false")
+                            .panel-body
+                                .panel
+                                    .row
+                                        .col-sm-offset-1.col-sm-10
+                                            div#container
+                                    .row
+                                        br
+                                        br
+                                        .col-sm-offset-1.col-sm-10
+                                            div#container-votes-rounds
+                                    .row
+                                        br
+                                        br
+                                        .col-sm-offset-1.col-sm-10
+                                            div#container-votes-rounds-channels
+    .row
+            .col-sm-offset-6.col-sm-2
+                a.btn.btn-default.pull-right(href=process.env.MP+"/") Back
+    include results/manualBid
+block append scripts
+    if(user)
+        script(src=process.env.MP+'/js/results.js?v='+process.env.BUILD_VERSION)

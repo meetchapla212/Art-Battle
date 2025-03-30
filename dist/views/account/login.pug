@@ -1,0 +1,26 @@
+extends ../layout
+
+block content
+    .page-header
+        .row
+            .col-sm-6
+                .row
+                    h1 Sign In
+                    hr.highlight
+                .row
+                    form.form-horizontal(method='POST')
+                        input(type='hidden', name='_csrf', value=_csrf)
+                        .form-group
+                            label.col-sm-2.control-label(for='email') Email
+                            .col-sm-10
+                                input.form-control(type='email', name='email', id='email', placeholder='Email', autofocus, required)
+                        .form-group
+                            label.col-sm-2.control-label(for='password') Password
+                            .col-sm-10
+                                input.form-control(type='password', name='password', id='password', placeholder='Password', required)
+                        .form-group
+                            .col-sm-offset-2.col-sm-7
+                                    button.col-sm-3.btn.btn-primary(type='submit')
+                                        i.fa.fa-user
+                                        | Login
+                                    a.btn.btn-link(href=process.env.MP+'/forgot') Forgot your password?

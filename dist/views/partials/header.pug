@@ -1,0 +1,34 @@
+.navbar.navbar-default
+    .container
+        .navbar-header(style="margin-top: -10px;")
+            button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+                span.sr-only Toggle navigation
+                span.icon-bar
+                span.icon-bar
+                span.icon-bar
+            a.navbar-brand(href=process.env.MP+'/')
+                img(width="50px" src=process.env.MP+"/images/ABVoteHead.svg" title="AB Text Vote System")
+        .collapse.navbar-collapse
+            ul.nav.navbar-nav
+                li(class=(title == 'Events') ? 'active' : undefined)
+                    a(href=process.env.MP+'/') Home
+            ul.nav.navbar-nav.navbar-right
+                if !user
+                    li(class=(title == 'Login') ? 'active' : undefined)
+                        a(href=process.env.MP+'/login') Login
+                else
+                    li.dropdown(class=(title == 'Account Management') ? 'active' : undefined)
+                        a.dropdown-toggle(href=process.env.MP+'#', data-toggle='dropdown')
+                            if user.profile.picture
+                                img(src=user.profile.picture)
+                            else
+                                img(src=user.gravatar(60))
+                            span= user.profile.name || user.email || user.id
+                            i.caret
+                            ul.dropdown-menu
+                                if user
+                                    li
+                                        a(href=process.env.MP+'/account') My Account
+                                    li.divider
+                                li
+                                    a(href=process.env.MP+'/logout') Logout

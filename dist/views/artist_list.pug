@@ -1,0 +1,44 @@
+doctype html
+html
+    head
+        meta(charset='utf-8')
+        meta(http-equiv='X-UA-Compatible', content='IE=edge')
+        meta(name='viewport', content='width=device-width, initial-scale=1.0')
+        meta(name='theme-color' content='#4DA5F4')
+        meta(name='csrf-token', content=_csrf)
+        title Artists
+        link(rel='shortcut icon', href=process.env.MP+'/images/favicon.ico', type='image/x-icon')
+        link(rel='icon', href=process.env.MP+'/images/favicon.ico', type='image/x-icon')
+        link(rel='stylesheet', href=process.env.MP+'/css/bootstrap.css')
+        link(rel="stylesheet" href="https://use.typekit.net/kot5qyf.css")
+        link(rel='stylesheet', href=process.env.MP+'/css/artist_list.css?v='+process.env.BUILD_VERSION)
+        script.
+            var mp = '#{process.env.MP}';
+
+    body
+        #koroot.container
+            block content
+                section.thumb-gallery
+                    section.sec-head
+                        ul.gallery
+                            //ko foreach: Artists
+                            li(data-bind="click: CycleImage")
+                                // ko if: SelectedImage
+                                img(data-bind="attr: {src: SelectedImage().Thumbnail.url}")
+                                // /ko
+                                div.clearfix
+                                span.nameWrapper
+                                    span(data-bind="click: (vm, e) => {e.stopPropagation();window.location.href = Link}")
+                                        span.first_name(data-bind="text: Name[0]")
+                                        br
+                                        span.last_name(data-bind="text: Name[1]")
+                            // /ko
+        block scripts
+            script.
+                // used in vm
+                const artistList = JSON.parse(`!{JSON.stringify(artistList)}`);
+                const token = "#{token}";
+            script(src = process.env.MP+'/js/lib/jquery-3.2.1.js')
+            script(src = process.env.MP+'/js/lib/bootstrap.js')
+            script(src = process.env.MP+'/js/lib/knockout-3.4.2.debug.js')
+            script(src=process.env.MP+'/js/artist_list.js?v='+process.env.BUILD_VERSION)

@@ -1,0 +1,29 @@
+section.thumb-gallery
+    ul.gallery
+    // ko foreach: EventListView
+    section.sec-head
+        // ko if: Country
+        span.img
+            img(data-bind="attr: {src: mp+'/images/countries/4x3/'+Country.country_image}")
+        // /ko
+        // ko if: Top
+        span.img &#11088;
+        // /ko
+        // h2(data-bind="html: '&nbsp;'+Name, click: OpenVotingLink")
+        h2(data-bind="html: '&nbsp;'+Name")
+    // ko foreach: Rounds
+    div(data-bind="text: RoundNumber, style: {display: 'none'}")
+    ul.gallery
+        //ko foreach: Artists
+        //ko if: EaselNumber > 0 && SelectedImage()
+        li
+            img(data-bind="attr: {src: SelectedImage().Thumbnail().url}, click: (vm) => {OpenAuction.bind(vm)()}")
+            span(data-bind="text: PriceText")
+        // /ko
+        // /ko
+    // /ko
+    // /ko
+if (showAppLogo)
+    div.app_link
+        a(href="https://apps.apple.com/app/art-battle/id1466843882")
+            img(src=process.env.MP+"/images/app_logo.svg")

@@ -1,0 +1,34 @@
+table.table.table-hover
+    thead
+        tr
+            th EventId
+            th Round
+            if (user && user.isAdmin)
+                th.actions Actions
+    tbody
+        // ko foreach: $data
+        tr
+            td
+                // ko if : countryFlag
+                img(data-bind='attr: {src: mp+"/images/countries/4x3/" + countryFlag}' width="15px")
+                span &nbsp;
+                // /ko
+                a(data-bind="attr: { href: mp+'/event/' + _id + '/results' }")
+                    span(data-bind='text: Name')
+            td
+                button.btn.btn-xs.ladda-button(type="button" data-style="zoom-in" data-size="xs" 
+                    data-bind="click: IncrementRound, buttonbusy: CurrentRoundUpdater.Busy, css: IncrementRoundCSS")
+                    span.ladda-label(data-bind="text: IncrementRoundText")
+            if (user && (user.isAdmin || user.IsEventAdmin))
+                td
+                    a.btn.btn-primary.btn-xs(data-placement="top", data-toggle="tooltip", data-original-title="Register", data-bind="attr: { href: mp+'/event/' + _id + '/register' }")
+                        i.glyphicon.glyphicon-user
+                    if(user && !user.IsEventAdmin)
+                        span &nbsp;&nbsp
+                            button.btn.btn-primary.btn-xs(data-placement="top", data-toggle="tooltip", data-original-title="Edit", data-bind="click: function() { $parents[1].Edit(_id); }")
+                                i.glyphicon.glyphicon-pencil
+
+            //- td.text-center
+            //-     button.btn.btn-danger.btn-xs(data-placement="top", data-toggle="tooltip", data-original-title="Delete", data-bind="click: function() { $parent.Delete($data); }, disable: $parent.LoadingTracker.Busy")
+            //-         i.glyphicon.glyphicon-trash
+        // /ko

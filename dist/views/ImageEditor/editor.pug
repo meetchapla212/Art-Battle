@@ -1,0 +1,81 @@
+extends editor_layout
+block content
+    section.site-wrap.zeroRightLeftPad(data-bind="beforeUnloadText: beforeUnloadPrompt")
+        section.container.zeroRightLeftPad
+            section.col-xs-12.zeroRightLeftPad
+                span.logo
+                    a(href=process.env.MP+'#')
+                        img(width='98px' src=process.env.MP+'/images/ABVoteHead.svg')
+                span.cath
+                    if(countryFlag)
+                        img(src=process.env.MP+"/images/countries/4x3/" + countryFlag width="24px")
+                    span &nbsp;&nbsp;#{title}
+                div.total_rounds
+                    p !{Description}
+                // p.total_rounds #{totalContestants + ' Artists. ' + totalRounds+' Rounds.'}
+                div.roundHistory
+                    // ko foreach: Rounds
+                    div
+                        a(data-bind="click: (vm) => {$root.changeRound(vm)}, css: RoundWrapperCss()")
+                            span(data-bind="html: RoundText(), css: RoundCss()")
+                            br
+                            span.round(data-bind="html: 'ROUND ' + RoundNumber() + ':&nbsp;'")
+                    // ko if: (Show())
+                    h4
+                    section.voting.zeroRightLeftPad
+                                div(style="clear:both")
+                                div
+                                    span.message-tag(data-bind="html: message()")
+                                div(style="clear:both")
+                                div.voting-list(class=userStatus !== 'Photo'? "no-camera": "" data-bind="css: !HasImages() ? 'no-images': ''")
+                                    // ko foreach: (Artists())
+                                    div.artist-container(class=(userStatus !== 'Photo') ? "no-camera": "" data-bind="click: (vm, e) => {$parent.setEaselNumber(EaselNumber, e.currentTarget, vm);}")
+                                        span.easel_number(data-bind="text: EaselNumber") &nbsp;&nbsp;&nbsp;
+                                        span.artist_gallery
+                                            span.artist_items
+                                                span.artist_name.gallery_item
+                                                    span
+                                                        span(data-bind="html: Name[0]")
+                                                        br
+                                                        span(data-bind="text: Name[1]")
+                                                // ko foreach: Images
+                                                span.gallery_item
+                                                    img(data-bind="attr: {src: Thumbnail().url}")
+                                                    button.btn.btn-primary.btn-xs(class="" data-placement="top" data-toggle="tooltip" data-original-title="Edit" data-bind="click: function(vm, e) { $root.initEditor(vm);e.stopPropagation(); }")
+                                                        i.glyphicon.glyphicon-pencil
+                                                // /ko
+                                    div.clearfix
+                                    // /ko
+                                    // /ko
+                                div(class="clearfix")
+                                // ko if: ($root.NumRequests() > 0)
+                                progress-bar(params="progress:$root.percentage, totalUploads:$root.totalUploads")
+                                // /ko
+                    // /ko
+                    // /ko
+        div.modal(data-bind="modal:showEditor")
+            div.modal-dialog(style="min-height: 700px; width: 100%")
+                div.modal-content
+                    div.modal-body(style="min-height: 700px; width: 100%")
+                        span.icon.text-center
+                            img(src=process.env.MP+"/images/Add Camera-6.svg")
+                        p
+                            span.heading2.extra-light.text-center(data-bind="{text: $root.SelectedArtId}")
+
+                        div#tui-image-editor-container
+                        div.modal-anchor
+                            a.modal-okay.bold-italic-36(data-bind="click: (vm, e) => {showEditor(false);e.stopPropagation();saveImage()}")
+                                span OK!
+                            a.modal-no-thanks.semi-bold-italic-20(data-bind="click: (vm, e) => {showEditor(false);e.stopPropagation();}") Cancel
+    div.app_link
+        a(href="https://apps.apple.com/app/art-battle/id1466843882")
+            img(src=process.env.MP+"/images/app_logo.svg")
+    div.clearfix
+block append scripts
+    script.
+       //used in vm
+       const RoundWiseImages = JSON.parse(`!{JSON.stringify(roundWiseImages)}`);
+       const CurrentRoundNumber = !{CurrentRoundNumber};
+       const EID = '!{EID}';
+       const VoterHash = '!{VoterHash}';
+    script(src=process.env.MP+'/js/image-editor.js?v='+process.env.BUILD_VERSION)

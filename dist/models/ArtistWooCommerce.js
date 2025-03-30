@@ -1,0 +1,34 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ArtistWooCommerceSchema = exports.artistWooCommerceSchema = void 0;
+const mongoose = require("mongoose");
+exports.artistWooCommerceSchema = {
+    ArtistId: String,
+    ProductId: { type: String, unique: true, index: true },
+    Confirmation: String,
+    createdAt: Date,
+    updatedAt: Date,
+    Description: String,
+    Permalink: String,
+    Name: String,
+    Purchasable: Boolean,
+    Images: [
+        {
+            'id': Number,
+            'date_created': String,
+            'date_created_gmt': String,
+            'date_modified': String,
+            'date_modified_gmt': String,
+            'src': String,
+            'name': String,
+            'alt': String,
+        }
+    ],
+    Price: String,
+    Contestant: { type: mongoose.Schema.Types.ObjectId, ref: 'Contestant' }
+};
+exports.ArtistWooCommerceSchema = new mongoose.Schema(exports.artistWooCommerceSchema, { timestamps: true });
+const ArtistWooCommerceModel = mongoose.model('artistwoocommerce', exports.ArtistWooCommerceSchema);
+exports.default = ArtistWooCommerceModel;
+
+//# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm1vZGVscy9BcnRpc3RXb29Db21tZXJjZS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7QUFBQSxxQ0FBcUM7QUFNeEIsUUFBQSx1QkFBdUIsR0FBRztJQUNuQyxRQUFRLEVBQUUsTUFBTTtJQUNoQixTQUFTLEVBQUUsRUFBQyxJQUFJLEVBQUUsTUFBTSxFQUFFLE1BQU0sRUFBRSxJQUFJLEVBQUUsS0FBSyxFQUFFLElBQUksRUFBQztJQUNwRCxZQUFZLEVBQUUsTUFBTTtJQUNwQixTQUFTLEVBQUUsSUFBSTtJQUNmLFNBQVMsRUFBRSxJQUFJO0lBQ2YsV0FBVyxFQUFFLE1BQU07SUFDbkIsU0FBUyxFQUFFLE1BQU07SUFDakIsSUFBSSxFQUFFLE1BQU07SUFDWixXQUFXLEVBQUUsT0FBTztJQUNwQixNQUFNLEVBQUU7UUFDSjtZQUNJLElBQUksRUFBRSxNQUFNO1lBQ1osY0FBYyxFQUFFLE1BQU07WUFDdEIsa0JBQWtCLEVBQUUsTUFBTTtZQUMxQixlQUFlLEVBQUUsTUFBTTtZQUN2QixtQkFBbUIsRUFBRSxNQUFNO1lBQzNCLEtBQUssRUFBRSxNQUFNO1lBQ2IsTUFBTSxFQUFFLE1BQU07WUFDZCxLQUFLLEVBQUUsTUFBTTtTQUNoQjtLQUFDO0lBQ04sS0FBSyxFQUFFLE1BQU07SUFDYixVQUFVLEVBQUUsRUFBRSxJQUFJLEVBQUUsUUFBUSxDQUFDLE1BQU0sQ0FBQyxLQUFLLENBQUMsUUFBUSxFQUFFLEdBQUcsRUFBRSxZQUFZLEVBQUM7Q0FDekUsQ0FBQztBQUNXLFFBQUEsdUJBQXVCLEdBQW9CLElBQUksUUFBUSxDQUFDLE1BQU0sQ0FBQywrQkFBdUIsRUFBRSxFQUFFLFVBQVUsRUFBRSxJQUFJLEVBQUUsQ0FBQyxDQUFDO0FBRTNILE1BQU0sc0JBQXNCLEdBQUcsUUFBUSxDQUFDLEtBQUssQ0FBNEIsbUJBQW1CLEVBQUUsK0JBQXVCLENBQUMsQ0FBQztBQUN2SCxrQkFBZSxzQkFBc0IsQ0FBQyIsImZpbGUiOiJtb2RlbHMvQXJ0aXN0V29vQ29tbWVyY2UuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgKiBhcyBtb25nb29zZSBmcm9tICdtb25nb29zZSc7XG5pbXBvcnQgeyBBcnRpc3RXb29Db21tZXJjZURUTyB9IGZyb20gJy4uLy4uLy4uL3NoYXJlZC9BcnRpc3RXb29Db21tZXJjZURUTyc7XG5cbmV4cG9ydCBpbnRlcmZhY2UgQXJ0aXN0V29vQ29tbWVyY2VEb2N1bWVudCBleHRlbmRzIEFydGlzdFdvb0NvbW1lcmNlRFRPLCBtb25nb29zZS5Eb2N1bWVudCB7XG59XG5cbmV4cG9ydCBjb25zdCBhcnRpc3RXb29Db21tZXJjZVNjaGVtYSA9IHtcbiAgICBBcnRpc3RJZDogU3RyaW5nLFxuICAgIFByb2R1Y3RJZDoge3R5cGU6IFN0cmluZywgdW5pcXVlOiB0cnVlLCBpbmRleDogdHJ1ZX0sXG4gICAgQ29uZmlybWF0aW9uOiBTdHJpbmcsXG4gICAgY3JlYXRlZEF0OiBEYXRlLFxuICAgIHVwZGF0ZWRBdDogRGF0ZSxcbiAgICBEZXNjcmlwdGlvbjogU3RyaW5nLFxuICAgIFBlcm1hbGluazogU3RyaW5nLFxuICAgIE5hbWU6IFN0cmluZyxcbiAgICBQdXJjaGFzYWJsZTogQm9vbGVhbixcbiAgICBJbWFnZXM6IFtcbiAgICAgICAge1xuICAgICAgICAgICAgJ2lkJzogTnVtYmVyLFxuICAgICAgICAgICAgJ2RhdGVfY3JlYXRlZCc6IFN0cmluZyxcbiAgICAgICAgICAgICdkYXRlX2NyZWF0ZWRfZ210JzogU3RyaW5nLFxuICAgICAgICAgICAgJ2RhdGVfbW9kaWZpZWQnOiBTdHJpbmcsXG4gICAgICAgICAgICAnZGF0ZV9tb2RpZmllZF9nbXQnOiBTdHJpbmcsXG4gICAgICAgICAgICAnc3JjJzogU3RyaW5nLFxuICAgICAgICAgICAgJ25hbWUnOiBTdHJpbmcsXG4gICAgICAgICAgICAnYWx0JzogU3RyaW5nLFxuICAgICAgICB9XSxcbiAgICBQcmljZTogU3RyaW5nLFxuICAgIENvbnRlc3RhbnQ6IHsgdHlwZTogbW9uZ29vc2UuU2NoZW1hLlR5cGVzLk9iamVjdElkLCByZWY6ICdDb250ZXN0YW50J31cbn07XG5leHBvcnQgY29uc3QgQXJ0aXN0V29vQ29tbWVyY2VTY2hlbWE6IG1vbmdvb3NlLlNjaGVtYSA9IG5ldyBtb25nb29zZS5TY2hlbWEoYXJ0aXN0V29vQ29tbWVyY2VTY2hlbWEsIHsgdGltZXN0YW1wczogdHJ1ZSB9KTtcblxuY29uc3QgQXJ0aXN0V29vQ29tbWVyY2VNb2RlbCA9IG1vbmdvb3NlLm1vZGVsPEFydGlzdFdvb0NvbW1lcmNlRG9jdW1lbnQ+KCdhcnRpc3R3b29jb21tZXJjZScsIEFydGlzdFdvb0NvbW1lcmNlU2NoZW1hKTtcbmV4cG9ydCBkZWZhdWx0IEFydGlzdFdvb0NvbW1lcmNlTW9kZWw7Il19

@@ -1,0 +1,133 @@
+body {
+    /*background-image: url('/a/images/profile_background.png');
+    background-repeat: no-repeat; */
+}
+
+html {
+    max-width: 414px;
+    overflow-x: hidden;
+}
+
+span.name {
+    font-family: acumin-pro, sans-serif;
+    font-weight: 800;
+    font-size: 27px;
+}
+
+a.logout {
+    font-family: acumin-pro-condensed, sans-serif;
+    color: #fff;
+    font-size: 20px;
+}
+
+.box {
+    border: 1px solid #fff;
+    margin: 0 auto;
+    height: 78px;
+    width: 64px;
+}
+
+.container.stats {
+    width: 233px;
+    margin: 47px auto 0;
+}
+
+.container.ok {
+    width: 30px;
+    margin: 53px auto 0;
+}
+
+.container.ok a {
+    color: #000;
+}
+
+.button-col {
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.col-xs-12.text-center.button-col button {
+    background: #fff;
+    color: #000;
+    border: 0;
+    font-style: italic;
+    font-family: acumin-pro-condensed, sans-serif;
+    font-weight: 900;
+    font-size: 27px;
+    padding-left: 13px;
+    padding-right: 13px;
+}
+
+span.box_title {
+    font-family: acumin-pro-extra-condensed, sans-serif;
+    font-size: 23px;
+    font-weight: 100;
+    font-style: italic;
+}
+
+span.number {
+    font-weight: 800;
+    font-size: 27px;
+}
+
+.container.history {
+    margin-top: 22px;
+}
+
+.col-xs-12.text-center.history {
+    text-decoration: underline;
+    font-family: acumin-pro-condensed, sans-serif;
+    font-size: 20px;
+}
+
+span.event_name {
+    font-family: acumin-pro-condensed, sans-serif;
+    font-weight: 700;
+    font-size: 21px;
+}
+
+span.vote_factor {
+    background: #fff;
+    color: #000;
+    font-weight: 900;
+    font-family: acumin-pro-condensed, sans-serif;
+    font-size: 11px;
+    padding-left: 1px;
+    padding-right: 1px;
+    margin-left: 4px;
+    font-style: italic;
+}
+
+@media(max-width:320px){
+    html {
+        max-width: 320px;
+    }
+}
+
+/* 2688x1242px at 458ppi */
+@media only screen
+and (max-width : 414px)
+and (max-height : 896px)
+and (-webkit-device-pixel-ratio : 3) {
+    html {
+        max-width: 414px;
+    }
+}
+/* 2436x1125px at 458ppi */
+@media only screen
+and (max-width : 375px)
+and (max-height : 812px)
+and (-webkit-device-pixel-ratio : 3) {
+    html {
+        max-width: 375px;
+    }
+}
+/* 1792x828px at 326ppi */
+@media only screen
+and (max-width : 414px)
+and (min-height : 896px)
+and (-webkit-device-pixel-ratio : 2) {
+    html {
+        max-width: 414px;
+    }
+}

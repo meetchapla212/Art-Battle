@@ -1,0 +1,107 @@
+extends ./layout
+
+block content
+    .page-header
+        h1 Register for
+            br
+            span
+                img(src=process.env.MP+"/images/countries/4x3/"+countryFlag width="39px")
+                span &nbsp;&nbsp;#{EventName}
+                br
+                span(style="font-size:19px") #{date}
+        hr.highlight1
+    .clearfix
+        // ko foreach: SubmittedNumbers
+        .row
+            .col-sm-6
+                div.alert.fade.in(data-bind="css: AlertClass")
+                    button.close(type='button', data-dismiss='alert')
+                        i.glyphicon.glyphicon-remove
+                    div(data-bind="text: AlertText")
+        // /ko
+        .row
+            .col-sm-6(data-bind="with: RegistrationEditor")
+                .row
+                    form.form-horizontal(style="padding:20px")
+                        //- .form-group
+                        //-     label.col-sm-3.control-label(for='firstname') First Name
+                        //-     .col-sm-9
+                        //-         input.form-control(type='text', name='FirstName', id='firstname', placeholder='First Name', autofocus, data-bind='value: FirstName')
+                        //- .form-group
+                        //-     label.col-sm-3.control-label(for='lastname') Last Name
+                        //-     .col-sm-9
+                        //-         input.form-control(type='text', name='LastName', id='lastname', placeholder='Last Name', data-bind='value: LastName')
+                        //- .form-group
+                        //-     label.col-sm-3.control-label(for='email') Email
+                        //-     .col-sm-9
+                        //-         input.form-control(type='email', name='Email', id='email', placeholder='Email', data-bind='value: Email')
+                        .form-group
+                            label.col-sm-3.control-label(for='PhoneNumber') #{inputLabel}
+                            .col-sm-9
+                                input.form-control(type=inputType, name='PhoneNumber', id='phonenumber', placeholder=inputPlaceholder, required, data-bind='value: PhoneNumber', autofocus="true")
+                        .form-group
+                            .col-sm-12
+                                //- button.btn.btn-danger.pull-right(data-bind="click: Reset") Reset
+                                    button.btn.btn-xs.ladda-button(type='submit' data-style="zoom-in"
+                                                                            data-bind="buttonbusy: VotingUpdater.Busy, css: VotingCss" data-size="xs" )
+                                                                            span.ladda-label(data-bind="text: VotingText")
+                                button.btn.btn-primary.ladda-button.pull-right(data-style="zoom-in" data-size="xs"
+                                    data-bind='click: Save, buttonbusy: RegistrationUpdater.Busy, css: RegistrationCss' )
+                                    span.ladda-label(data-bind='text: RegistrationText') Submit 
+            .col-sm-6(data-bind="with: RegisteredVoters")
+                .row
+                    .col-sm-offset-1.col-sm-10
+                        span Registered
+                        .pull-right
+                            label.label(for="filter") Filter:
+                            input.input.rounded.pull-right#filter(type="text", data-bind="value: Filter, valueUpdate: 'afterkeydown'")
+                .row
+                    .col-sm-offset-1.col-sm-11
+                            table.table.table-hover
+                                thead
+                                    tr
+                                        //- th First Name
+                                        //- th Last Name
+                                        //- th E-mail
+                                        th Phone Number
+                                        th Status
+                                tbody
+                                    // ko foreach: FilteredRegistrations
+                                    tr(data-bind="click: function() { $parent.Selected($data) }")
+
+                                        //- td(data-bind="text: FirstName")
+                                        //- td(data-bind="text: LastName")
+                                        //- td(data-bind="text: Email")
+                                        td
+                                            if (user && (user.isAdmin || user.IsEventAdmin))
+                                                // ko if: Hash.length > 0
+                                                a(title="user profile page" data-bind="attr: {href: mp + '/user/'+Hash}, click: function(b, e) {e.stopPropagation(); window.location = e.target.parentElement.href;}")
+                                                    i(class="glyphicon glyphicon-user")
+                                                // /ko
+                                            if (VoteByLink)
+                                                a(title="user-vote-link" data-bind="attr: {href: mp + VoteUrl}, click: function(b, e) {e.stopPropagation(); window.location = e.target.parentElement.href;}")
+                                                    i(class="glyphicon glyphicon-comment")
+                                            if (user && (user.isAdmin || user.IsEventAdmin))
+                                                a(title="message" style="margin-left:1px;" data-bind="attr: {href: PeopleUrl}, click: function(b, e) {e.stopPropagation(); window.location = e.target.parentElement.href;}")
+                                                    i(class="glyphicon glyphicon-envelope") &nbsp;
+                                            span(data-bind="text:DisplayPhone", style="word-break: break-word")
+                                            // ko if : RegionImage
+                                            span &nbsp;&nbsp;
+                                            img(data-bind="attr:{src: mp + RegionImage}" height="15px")
+                                            // /ko
+                                        td
+                                            button.btn.btn-xs.ladda-button(type='submit' data-style="zoom-in"
+                                                style="width: 50px;"
+                                                data-bind="click: handleStatusChange, buttonbusy: StatusUpdater.Busy, css: StatusCss(), style: {'background-color': StatusColor(), 'border-color': StatusColor()}" data-size="xs" )
+                                                span.ladda-label(data-bind="html: StatusMessage()" )
+                                            span &nbsp;
+                                            // ko foreach: VoteCount
+                                            span.vote-dot &#9673;
+                                            // /ko
+                                    // /ko
+        .row
+            .col-sm-12
+                a.btn.btn-primary.pull-right(href=process.env.MP+"/") Back
+block append scripts
+    if(user)
+        script(src=process.env.MP+'/js/register.js?v='+process.env.BUILD_VERSION)

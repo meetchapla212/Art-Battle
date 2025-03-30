@@ -1,0 +1,62 @@
+h3 Message
+table.table.table-hover
+    thead
+        tr
+            th Nickname
+            th Email
+            th PhoneNumber
+            th RegistrationId
+            th Last Message
+            
+            
+    tbody
+        // ko foreach: $data.promotionMessageLogsData()
+        tr
+            td
+                span(data-bind="text: nickname")
+            td
+                span(data-bind='text: email')
+            td
+                a(data-bind="attr: { href: mp+'/p/' + phonenumber  }")
+                 span(data-bind='text: phonenumber')
+            td
+                a(data-bind="attr: { href: mp+'/p/' + phonenumber  }")
+                 span(data-bind='text: _id')
+            td
+                span(data-bind='text: lastMessage')
+            
+           
+        // /ko
+h3 Top Vote
+table.table.table-hover
+    thead
+        tr
+            th Nickname
+            th Email
+            th PhoneNumber
+            th RegistrationId
+            th Count
+            
+    tbody
+        // ko foreach: $data.promotionMessagesVoteData()
+        tr
+            td
+                span(data-bind="text: nickname")
+            td
+                span(data-bind='text: email')
+            td
+                a(data-bind="attr: { href: mp+'/p/' + phonenumber  }")
+                 span(data-bind='text: phonenumber')
+            td
+                a(data-bind="attr: { href: mp+'/p/' + phonenumber  }")
+                 span(data-bind='text: _id')
+            td
+                span(data-bind='text: count')
+            
+           
+        // /ko
+
+
+
+
+

@@ -1,0 +1,67 @@
+section.form-wrapper
+  
+  form(method='POST')
+    label Events: 
+    select.selectpicker.form-control.search-box-sel-all.SumoUnder(multiple='multiple',onchange="console.log($(this).children(':selected').length)",name='events',required='', data-bind="options: $data.events(),\
+    optionsText: 'title',\
+    value: $root.selectedEvent,\
+    selectedOptions: $root.multipleSelectedOptionValues ")
+   
+    p
+    // ko foreach: $root.selectedText()
+
+    
+    button.btn.btn-xs.ladda-button.btn-default(style='margin-left:1%', type='button', data-style='zoom-in', data-size='xs')
+        span.ladda-label(data-bind='text: title')
+       
+    // /ko
+    p 
+    span.ladda-label(data-bind="text: $root.guestCount() ? 'Result: '+$root.guestCount().guest+' Guests' :'Result: 0  Guests'")
+    p
+    label Conditions:
+    label Bid $ 
+    input.form-control(name='bids',type='number', placeholder='0', data-bind='value: bids', required='')
+    label Vote count
+    input.form-control(name='voteCount',type='number', placeholder='0', data-bind='value: voteCount', required='')
+    label Time since last marketing message(Hours)
+    input.form-control(name='timelog',type='number', placeholder='0',data-bind='value: timelogs', required='')
+    label Registration Types
+    input(type='checkbox', name='sms-reg', value='sms-reg',checked='',data-bind='checked: smsRegType')
+    |  SMS
+    br
+    input(type='checkbox', name='app-reg', value='app-reg',data-bind='checked: appRegType')
+    |  App
+    br
+    p
+    span.ladda-label(data-bind="text: $data.filterGuestCount() ? 'Scope: '+$data.filterGuestCount().guestcount+' Guests' :'Scope: 0  Guests'")
+
+    p
+    a(href=process.env.MP+'#' data-bind="click: getFilterGuestCount.bind($data,$root.multipleSelectedOptionValues())") Refresh Result
+    br
+    label Channel
+    input(type='checkbox', name='sms', value='sms',checked='',data-bind='checked: notificationBySMS')
+    |  SMS
+
+    br
+    input(type='checkbox', name='ios', value='ios',data-bind='checked: notificationByiOS')
+    |  iOS
+
+    br
+    input(type='checkbox', name='android', value='andrios',data-bind='checked: notificationByAndroid')
+    |  Android
+
+    br
+    label Phone Number
+    select.selectpicker.form-control(name='phone',required='',data-show-subtext='true', data-bind="options: $data.eventPhoneNumbers,\
+    optionsText: 'label',\
+    optionsValue: 'phone',\
+    value: selectedPhone,\
+    selectedOptions: PhoneValues,\
+    optionsCaption: 'Choose1...'")
+    br
+    p
+
+    label Message
+    textarea(data-bind='value: Message',required='')
+    button.btn.btn-primary.pull-right.space(type='submit',data-bind='click: savePromotionForm') Send
+

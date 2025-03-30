@@ -1,0 +1,35 @@
+.nameWrapper {
+    display: block;
+    font-size: 30px;
+    font-family: acumin-pro-extra-condensed, sans-serif;
+}
+
+.first_name {
+    font-weight: 500;
+}
+
+.last_name {
+    font-weight: 900;
+}
+
+.sec-head h2 {
+    float: none;
+    font-weight: 600;
+    font-family: acumin-pro-extra-condensed, sans-serif;
+    font-size: 35px;
+    margin: 0;
+    text-decoration: underline;
+}
+
+ul.gallery {
+    list-style: none;
+    padding: 0;
+}
+
+.sec-head {
+    text-align: center;
+}
+
+.top_artists {
+    margin-top: 30px;
+}

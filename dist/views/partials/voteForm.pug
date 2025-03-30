@@ -1,0 +1,13 @@
+h3.text-italic.enter_vote_head Select Art to vote
+form(data-bind='submit: handleVotingForm')
+    div.form-list
+        .form-group(data-bind="css: { 'has-error' : !success() } ")
+        div.input-group
+            input(type="hidden", name="hash", value=voteHash)
+            input.form-control(type="hidden", required='required', name="vote", data-bind="value: selectedEaselNumber(), event: {change:clearButtonState, keyup:clearButtonState, paste:clearButtonState}")
+            // ko if: selectedEaselNumber() > 0
+            span.input-group-btn
+                button.btn.btn-xs.ladda-button(type='submit' data-style="zoom-in"
+                    data-bind="buttonbusy: VotingUpdater.Busy, css: VotingCss" data-size="xs" )
+                    span.ladda-label(data-bind="text: VotingText")
+            // /ko

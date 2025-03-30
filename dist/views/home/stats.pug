@@ -1,0 +1,15 @@
+table.table.table-hover
+    thead
+        th Event
+        th Registered
+        th Door
+        th Online
+    tbody
+        // ko foreach: $data
+        tr
+            td(data-bind='{text: Name}')
+            td(data-bind='{text: Registered}')
+            td(data-bind='{text: Door}')
+            td(data-bind='{text: Online}')
+        // /ko
+div(data-bind={text: JSON.stringify($data)})

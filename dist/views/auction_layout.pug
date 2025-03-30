@@ -1,0 +1,51 @@
+doctype html
+html(lang='en')
+    head
+        meta(charset='utf-8')
+        meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
+        // Bootstrap CSS
+        link(rel='stylesheet', href=process.env.MP+'/css/bootstrap.css')
+        link(href=process.env.MP+'/css/auction.css?v='+process.env.BUILD_VERSION, rel='stylesheet')
+        link(rel='shortcut icon', href=process.env.MP+'/images/favicon.ico', type='image/x-icon')
+        link(rel='icon', href=process.env.MP+'/images/favicon.ico', type='image/x-icon')
+        link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick.min.css")
+        link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick-theme.min.css")
+        if title
+            meta(property='og:title' content=title)
+        if pageImage
+            meta(property='og:image' content=pageImage)
+
+        script.
+            var mp = '#{process.env.MP}';
+        title Art-Battle
+    body
+        section.content
+            block content
+        footer
+            section.container
+                span.brand-logo
+                    img(src=process.env.MP+'/images/auction_temp/Group 1@2x.png')
+                p
+                    i
+                        | 'Art battle' is a internationally registered trademark of Art Battle International
+                        br
+                        | It is used here under license. All right reserved. Copyright 2019.
+                        i
+                i
+                    i
+                        ul.menu
+                            li
+                                a(href=process.env.MP+'#') Privacy & Date Use
+                            li
+                                a(href=process.env.MP+'#') Contact Art Battle
+                        p.bottom version #{process.env.BUILD_VERSION}
+            i
+                i
+        i
+            i
+                block scripts
+                    script.
+                        // used in vm
+                    script(src=process.env.MP+'/js/lib/jquery-3.2.1.js')
+                    script(src=process.env.MP+'/js/lib/bootstrap.js')
+                    script(src=process.env.MP+'/js/lib/knockout-3.4.2.debug.js')

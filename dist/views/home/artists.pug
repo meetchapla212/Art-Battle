@@ -1,0 +1,62 @@
+
+form.form-inline.pull-left(data-bind="submit: () => {ActivePageNumber(1); Search();}")
+    button.btn.btn-success.btn-sm.pull-left.form-control(type='button' data-bind='click: (vm, e) => {console.log(vm, e);e.preventDefault(); AddArtist()}')
+        i.glyphicon.glyphicon-plus
+        |  Add New Artist
+    .form-group
+        input#searchInput.form-control(type='text' placeholder='Type your query' data-bind="value: SearchText")
+    button.btn.btn-primary.btn-sm.form-control(type='submit')
+        i.glyphicon.glyphicon-search
+        |  Search
+
+
+// ko if: (Artists().length > 0)
+table.table.table-responsive
+    thead
+        th Name
+        th PhoneNumber
+        th EntryId
+        th Email
+        th Actions
+    tbody
+        // ko foreach: Artists
+        tr
+            td(data-bind="text: Name")
+            td
+                a(data-bind="text: PhoneNumber, attr: {href:mp+'/p/'+PhoneNumber()}" href=process.env.MP+"#" target="_blank")
+            td(data-bind="text: EntryId")
+            td(data-bind="text: Email")
+            td
+                span &nbsp;&nbsp
+                    button.btn.btn-primary.btn-xs(data-placement="top", data-toggle="tooltip",
+                        data-original-title="Edit", data-bind="click: function() { Edit(); }" title="edit")
+                        i.glyphicon.glyphicon-pencil
+                span &nbsp;&nbsp
+                    a(data-bind="attr: {href: mp+'/ar/' + ArtistId}" target="_blank")
+                        button.btn.btn-primary.btn-xs(data-placement="top", data-toggle="tooltip",
+                            data-original-title="View" title="view artist profile")
+                            i.glyphicon.glyphicon-eye-open
+                // ko if: EntryId()
+                span &nbsp;&nbsp
+                    a(data-bind="attr: {href: 'https://artbattle.com/profile/entry/' + EntryId()}" target="_blank")
+                        button.btn.btn-primary.btn-xs(data-placement="top", data-toggle="tooltip",
+                            data-original-title="View" title="WP artist profile")
+                            i.glyphicon.glyphicon-globe
+                // /ko
+        // /ko
+// /ko
+// ko if: (PageNumbers().length > 0)
+nav
+    ul.pagination.pagination-sm
+        li(data-bind="click: (vm, e) => {e.preventDefault(); GoToPrevious($data);};")
+            a(href=process.env.MP+'#' aria-label='Previous' data-bind="css: PrevPageCss()")
+                span(aria-hidden='true') &laquo;
+        // ko foreach: PageNumbers()
+        li(data-bind="css: $parent.ActivePageNumber() === $data ? 'active': ''," +
+        " click: (vm, e) => {e.preventDefault(); $parent.ChangePage($data);}; ")
+            a(href=process.env.MP+'#', data-bind="click: (vm, e) => {e.preventDefault()}, text: $data")
+        // /ko
+        li(data-bind="click: (vm, e) => {e.preventDefault(); GoToNext($data);};")
+            a(href=process.env.MP+'#' aria-label='Next' data-bind="css: NextPageCss()")
+                span(aria-hidden='true') &raquo;
+// /ko

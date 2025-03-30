@@ -1,0 +1,9 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.AddMinutes = void 0;
+function AddMinutes(date, minutes) {
+    return new Date(date.getTime() + minutes * 60000);
+}
+exports.AddMinutes = AddMinutes;
+
+//# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNvbW1vbi9EYXRlLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7OztBQUFBLFNBQWdCLFVBQVUsQ0FBQyxJQUFVLEVBQUUsT0FBZTtJQUNsRCxPQUFPLElBQUksSUFBSSxDQUFDLElBQUksQ0FBQyxPQUFPLEVBQUUsR0FBRyxPQUFPLEdBQUcsS0FBSyxDQUFDLENBQUM7QUFDdEQsQ0FBQztBQUZELGdDQUVDIiwiZmlsZSI6ImNvbW1vbi9EYXRlLmpzIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IGZ1bmN0aW9uIEFkZE1pbnV0ZXMoZGF0ZTogRGF0ZSwgbWludXRlczogbnVtYmVyKSB7XG4gICAgcmV0dXJuIG5ldyBEYXRlKGRhdGUuZ2V0VGltZSgpICsgbWludXRlcyAqIDYwMDAwKTtcbn0iXX0=

@@ -1,0 +1,19 @@
+extends layout
+
+block content
+    .page-header
+        .row
+            .col-sm-5
+                h1 Vote Record For #{data.phoneNum}
+
+                h3 Total Events #{data.totalEvents}
+                h3 Total Votes #{data.totalVotes}
+
+                div
+                    each val in Object.values(data.Events)
+                        h3 #{val.EventName}
+                        ul
+                            each round in val.Rounds
+                                li #{`${round.Name}: ${round.ArtistName}`}
+        .row
+            .col-sm-5 This view is an experimental beta voting record, and may not be entirely accurate or consistent with the tournament results.

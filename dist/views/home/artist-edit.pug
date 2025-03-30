@@ -1,0 +1,42 @@
+div.modal(data-bind="modal:Vm.OpenPopup")
+    div.modal-dialog
+        div.modal-content
+            div.modal-header
+                h4.modal-title(data-bind="text: Name")
+            div.modal-body
+
+                form(data-bind="submit: () => {/*Vm.OpenPopup(false); */SaveMessage(undefined);Save();}")
+                    .form-group.required
+                        label.control-label(for='inputEntryId') EntryId
+                        input#inputEntryId.form-control(type='text' required data-bind="value: EntryId"
+                            placeholder="WP Gravity Form Id")
+                        span#helpBlock.help-block Duplicate id in entry will mark this contestant as duplicate and it will not show in search results
+                    .form-group.required
+                        label.control-label(for='inputName') Name
+                        input#inputName.form-control(type='text' required data-bind="value: Name")
+                    .form-group
+                        label(for='inputPhone') PhoneNumber
+                        input#inputPhone.form-control(type='text' data-bind="value: PhoneNumber"
+                            placeholder="Phone number with Country code")
+                    .form-group.required
+                        label.control-label(for='inputEmail') Email
+                        input#inputEmail.form-control(type='email' required data-bind="value: Email"
+                            placeholder="artist@artbattle.com")
+                    .form-group
+                        label(for='selectCity') City
+                        select#selectCity.form-control(data-bind=("options: Vm.Cities, value: City, " +
+                            "optionsValue: function(item) { return item._id}, optionsText: function(item) { " +
+                            "return `${item.Name},${' '}${item.Region},${' '}${item.Country}` }, valueAllowUnset: true, optionsCaption: 'Choose...'"))
+                    .form-group
+                        label(for='inputWebsite') Website
+                        input#inputWebsite.form-control(type='text' data-bind="value: Website || 'https://'"
+                            placeholder="https://artist.me.com")
+                    //ko if:(SaveMessage())
+                    .alert.fade.in(data-bind="css: SaveMessageCss")
+                        button.close(type='button', data-dismiss='alert' data-bind="click: () => SaveMessage(undefined)")
+                            i.glyphicon.glyphicon-remove
+                        div(data-bind="text: SaveMessage")
+                    // /ko
+                    button.btn.btn-danger(data-dismiss="modal" data-bind="click: (vm, e) => {$('.modal-backdrop').remove();Vm.OpenPopup(false);SaveMessage(undefined);}") Close
+                    span &nbsp;
+                    button.btn.btn-default(type='submit') Submit

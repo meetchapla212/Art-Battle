@@ -1,0 +1,82 @@
+block append scripts
+    script.
+    script(src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js")
+    script(src = "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick.min.js")
+// ko if: ActiveArtist()
+section.bid-info
+    // ko if: (ActiveArtist().IsAdmin())
+    a(href=process.env.MP+"#" data-bind="click: (vm, e) => {ShowAdminControls(!ShowAdminControls()); e.preventDefault;}") Toggle Admin Controls
+    // /ko
+    // ko if: (ActiveArtist().IsAdmin() && ShowAdminControls())
+    section.timing-info
+        // ko if: (LotSaveMessage() && LotSaveMessage().length > 0)
+        div.alert(data-bind="text: LotSaveMessage(), css: LotSaveCss()")
+        // /ko
+        form
+            .form-group
+                label(for='ActiveArtistDescription') Description
+                |
+                textarea#ActiveArtistDescription.form-control(data-bind="textInput: ActiveArtistDescription" placeholder='description')
+            |
+            .form-group
+                label(for='ActiveArtistWidthAndHeight') WidthAndHeight
+                |
+                input#ActiveArtistWidthAndHeight.form-control(type='text', placeholder='width' data-bind="textInput: ActiveArtistWidthAndHeight")
+            |
+            button.btn.btn-default.btn-primary(type='submit' data-bind="click: (vm, e) => {SaveLotConfig.bind(vm)(); e.preventDefault()}, buttonbusy: ActiveArtist().VoteUpdater.Busy") Submit
+    // /ko
+    // ko if: ActiveArtist().Name()
+    h1.bid-name(data-bind="click: (vm, e) => {window.location.href=ActiveArtist().Link()} ,html: `${ActiveArtist().Name()[0]} <span> ${ (ActiveArtist().Name()[1] && ActiveArtist().Name()[1]) || ''} </span>`")
+    // /ko
+    h2.art-id(data-bind="text: ActiveArtist().ArtId()")
+    section.auction-img
+        img(data-bind="attr: {src: ActiveArtist().SelectedImage().Thumbnail().url}")
+        div.slider-nav(style="margin-top: 30px;")
+            //ko foreach: ActiveArtist().Images
+            div(data-bind="click: ()=>{ $parent.ActiveArtist().SelectedImageIndex($index()); $parent.ActiveArtist().SelectedImage($data); }")
+                div.slide-thumb(data-bind="style: { 'backgroundImage': 'url(' + $data.Thumbnail().url + ')' }")
+            // /ko
+        div.row
+            div.col-xs-1.widthAndHeight(data-bind="html: `${ActiveArtistWidthAndHeight() || ''}`")
+            div.col-xs-9.description(data-bind="html: ActiveArtistDescription() || ''")
+    section.auction-bid
+        h4.auction-status(data-bind="css: ActiveArtist().AuctionStatusCss(), text: ActiveArtist().AuctionStatusText()")
+        ul.bid-list
+            // ko foreach: ActiveArtist().TopBids
+            li(data-bind=("css: $index() === ($parent.ActiveArtist().TopBids().length - 1)?'higher-price': ''"))
+                span.bidder-name(data-bind="text: Registration.NickName || Registration.PhoneNumber")
+                span.bid-price(data-bind="text: `${$parent.ActiveArtist().CurrencySymbol()} ${Amount}`")
+            // /ko
+        // ko if: (ActiveArtist().AuctionStatus() == 1 && (ActiveArtist().UserName()))
+        section.owners-bid
+            h3.owners-name(data-bind="text: ActiveArtist().UserName")
+            a.bid-control.bid-increment(href=process.env.MP+"#" data-bind="click: (vm ,e) => {e.preventDefault(); ActiveArtist().ResetButtonState(0);ActiveArtist().IncrementBid()}") ⊕
+            div.owners-price(data-bind="text: `${ActiveArtist().CurrencySymbol()}${ActiveArtist().Bid()}`, click: (vm ,e) => {ActiveArtist().ResetButtonState(0);ActiveArtist().IncrementBid()}")
+            a.bid-control.bid-decrement(href=process.env.MP+"#" data-bind="click: (vm ,e) => {e.preventDefault();ActiveArtist().ResetButtonState(0); ActiveArtist().DecrementBid()}, css: ActiveArtist().DecrementCss()") ⊖
+            span(data-bind="text: ``")
+        section.details-info
+            ul.list
+                li.hidden
+                    span.details code:culture15[xcvbep]
+                    span.price +$15
+        section.timing-info
+            button.btn.btn-xs.ladda-button.bid-button(type='submit' data-style="zoom-in"
+                data-bind="click: ActiveArtist().handleBidClick.bind(ActiveArtist()), buttonbusy: ActiveArtist().VoteUpdater.Busy, css: ActiveArtist().AuctionCss()" data-size="xs" )
+                span.ladda-label(data-bind="html: ActiveArtist().AuctionMessage()? ActiveArtist().AuctionMessage(): 'Bid'" )
+            h3(data-bind="text: ActiveArtist().AuctionNotice()")
+        // /ko
+        // ko if: (!(ActiveArtist().AuctionStatus() === 2 || ActiveArtist().AuctionStatus() === 0) && (!ActiveArtist().UserName() || (ActiveArtist().UserName() && ActiveArtist().UserName().length === 0)))
+        div.text-left
+            // ko if: (!VerifyUser())
+            input.register-input(type="tel" data-bind="textInput: UserNumber" placeholder="Phone Number")
+            button.btn.btn-xs.ladda-button.register-button(data-bind="click: RegisterUser") SEND
+            // /ko
+            // ko if: (VerifyUser())
+            input.register-input(type="text" data-bind="textInput: UserOTP" placeholder="text verification code")
+            button.btn.btn-xs.ladda-button.register-button(data-bind="click: VerifyOTP") SEND
+            // /ko
+        // ko if: (RegisterErrorMessage() && RegisterErrorMessage().length > 0)
+        div.text-left.has-error(data-bind="text: RegisterErrorMessage()")
+        // /ko
+        // /ko
+// /ko

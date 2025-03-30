@@ -1,0 +1,38 @@
+extends ./layout
+
+block content
+    if (user)
+    .page-header
+        h1 Make an announcement for #{EventName}
+        hr.highlight
+    .clearfix
+        .row
+            form.form-horizontal(method="POST" data-bind="submit: submitForm")
+                input(type='hidden', name='_csrf', value=_csrf)
+                .form-group
+                    label.col-sm-2.control-label(for='message') Message
+                    .col-sm-10
+                        textarea.form-control.announcement(name='Message', id='message', placeholder='Message', autofocus, required, data-bind="text: Message")
+                    br
+                    .col-sm-2
+                    .col-sm-10
+                        each option in options
+                            .row
+                                .col-sm-3
+                                    input(type="checkbox" checked=option.checked name=option.index)
+                                    label.control-label(for=option.index) &nbsp;&nbsp;#{option.label}
+                .form-group
+                    .col-sm-offset-2.col-sm-7
+                            button.col-sm-3.btn.btn-primary(type='submit')
+                                i.fa.fa-user
+                                | Submit
+            .panel.col-sm-offset-2
+                .row
+                    .col-sm-10
+                        h3(style="margin-left:6px") Popular Messages
+                        ol
+                            each val in topAnnouncements
+                                li(style="margin-top:6px")
+                                    a(href=process.env.MP+"#" data-bind='click: (vm, e) => messageClick(e.target.innerText)')&attributes({title: "Used " + val.firedTimes + " times"} )= val.message
+block append scripts
+    script(src=process.env.MP+'/js/announcement.js?v='+process.env.BUILD_VERSION)

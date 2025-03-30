@@ -1,0 +1,15 @@
+extends auction_layout
+block content
+    section.content
+        section.container
+            include active_artist_open
+            include auction_gallery
+            include auction/registrationForm
+block append scripts
+    script.
+       const token = "#{token}";
+       const artId = "#{artId}";
+       const phoneHash = "#{phoneHash}";
+    script(src=process.env.MP+'/js/auction.js?v='+process.env.BUILD_VERSION)
+
+

@@ -1,0 +1,585 @@
+img {
+    max-width: 100%;
+}
+
+body {
+    background: #000!important;
+    float: left;
+    width: 100%;
+    text-align: center;
+    font-family: "acumin-pro", serif;
+}
+
+.site-wrap {
+    float: none;
+    display: inline-block;
+    padding-top: 40px;
+    color: #fff;
+}
+
+.logo {
+    float: left;
+    width: 100%;
+    margin-bottom: 20px;
+    padding-top: 40px;
+}
+
+h4 {
+    float: left;
+    width: 100%;
+    /* text-transform: uppercase; */
+    text-align: center;
+}
+
+h4 span {
+    color: #00A500;
+    font-family: "acumin-pro", serif;
+    font-weight: 700;
+}
+
+span.cath {
+    float: left;
+    width: 100%;
+    font-size: 30px;
+    font-weight: 400;
+    font-family: "acumin-pro-condensed", serif;
+}
+
+.total_rounds {
+    float: left;
+    width: 100%;
+    font-size: 18px;
+    color: #fff;
+    padding: 10px 0;
+    font-family: "acumin-pro-condensed", serif;
+    font-weight: 700;
+    font-style: italic;
+}
+
+.total_rounds p {
+    display: block;
+    margin: 0 auto;
+    width: 90%;
+}
+
+.voting {
+    float: left;
+    width: 100%;
+    text-align: center;
+}
+
+.voting .voting-list {
+    float: none;
+    text-align: left;
+    font-size: 27px;
+    position: relative;
+    display: block;
+    margin: 10px auto;
+    width: 320px;
+}
+
+.voting .voting-list:after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 1px;
+    background: #fff;
+    left: 28px;
+    opacity: 0.3;
+}
+
+.voting .voting-list span.easel_number {
+    float: left;
+    width: 7.2%;
+    padding-left: 6px;
+    font-family: "acumin-pro-extra-condensed", sans-serif;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.voting .voting-list span.artist_name {
+    float: left;
+    /* padding-left: 21px; */
+    font-family: "acumin-pro-extra-condensed", serif;
+    word-break: break-word;
+    word-wrap: break-word;
+    width: 120px;
+    font-weight: 700;
+    display: flex;
+    flex-wrap: wrap;
+    height: 110px;
+    align-items: center;
+    text-align: left;
+    /* justify-content: center; */
+}
+
+.voting .voting-list span.artist_name span span:first-child {
+    font-weight: 200;
+}
+
+.voting h3 {
+    float: left;
+    width: 100%;
+    font-size: 15px;
+    margin-bottom: 20px;
+    font-style: italic;
+    font-weight: 100;
+    margin-top: 0;
+}
+
+.voting .form-list {
+    float: left;
+    width: 100%;
+    list-style: none;
+    padding-left: 0;
+}
+
+.voting .form-list div {
+    /* float:left; */
+    width: 152px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.voting .form-list div input[type="text"] {
+    width: 82px;
+    height: 46px;
+    color: #000;
+    padding: 0 15px;
+    font-size: 17px;
+}
+
+.voting .form-list div button[type="submit"] {
+    width: 70px;
+    color: #fff;
+    height: 46px;
+    border: 0;
+    font-size: 17px;
+    vertical-align: middle;
+}
+
+.voting .success-message {
+    font-size: 18px;
+}
+
+.voting .message-tag {
+    float: left;
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    display: none;
+}
+
+.inline {
+    display: inline !important;
+}
+
+.voting p {
+    font-size: 15px;
+}
+
+.list {
+    float: left;
+    width: 100%;
+    list-style: none;
+    text-align: center;
+    padding-left: 0;
+}
+
+.list li {
+    float: left;
+    width: 100%;
+    font-size: 15px;
+    color: #fff;
+}
+
+@media(max-width: 767px) {
+    .site-wrap {
+        width:100%;
+    }
+}
+
+.voting .voting-list div.artist-container {
+    padding-top: 6px;
+    padding-bottom: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.artist_items {
+    display: flex;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+}
+
+.artist_gallery {
+    float: left;
+    z-index: 1;
+    display: flex;
+    width: 93vw;
+    -webkit-overflow-scrolling: touch;
+    overflow-y: hidden;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    margin-left: 22px;
+}
+
+.artist_gallery .gallery_item {
+    display: flex;
+    height: 110px;
+    width: 70px;
+    float: left;
+    flex: 0 0 auto;
+    padding-left: 4px;
+}
+
+.gallery_item.isVideo {
+    background: #fff;
+}
+
+.cameraButton {
+    display: inline-block;
+    /* margin: 1em 0;*/
+    /* Styles to make it look like a button */
+    padding: 0.5em;
+    background: #111111 url('/a/images/Add Camera-6@2x.png') no-repeat center;
+    background-size: 28px;
+}
+
+/* Look like a clicked/depressed button */
+.cameraButton:active {
+    border-color: #CCC #EEE #EEE #CCC;
+}
+
+/* This is the part that actually hides the 'Choose file' text box for camera inputs */
+.cameraInput[accept*="camera"] {
+    display: block;
+    filter: alpha(opacity = 0);
+    opacity: 0;
+    cursor: pointer;
+    width: 0;
+    height: 0;
+}
+
+.artist_gallery::-webkit-scrollbar {
+    width: 5px;
+    background-color: #f8bbd0;
+    height: 5px;
+    display: none;
+}
+
+.artist_gallery {
+    -ms-overflow-style: none;
+// IE 10+ scrollbar-width: none;
+// Firefox }
+
+.artist_gallery::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px #1d1b1c ;
+    border-radius: 10px;
+    background-color: #080808 ;
+    border-left: 3px solid white;
+    border-right: 3px solid white;
+}
+
+.artist_gallery::-webkit-scrollbar-thumb {
+    border-radius: 20px;
+    -webkit-box-shadow: inset 0 0 0 0 #ad1457 ;
+    background-color: #e2dcde ;
+}
+
+.zeroRightLeftPad {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.container {
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+@media(min-width: 640px) {
+    .voting .voting-list {
+        width: 640px;
+    }
+}
+
+@media(min-width: 411px) {
+    .voting .voting-list {
+        width: 411px;
+    }
+}
+
+@media(min-width: 320px) {
+    .voting .voting-list {
+        width: 320px;
+    }
+}
+
+@media(min-width: 375px) {
+    .voting .voting-list {
+        width: 375px;
+    }
+}
+
+progress-bar {
+    /*position: fixed;*/
+    bottom: -20px;
+    left: 49.5%;
+    margin-left: -50%;
+    width: 100%;
+    z-index: 1;
+}
+
+.artist-container.active {
+    height: 303px;
+}
+
+.artist-container.active span.artist_name {
+    height: 303px;
+}
+
+.artist-container.active span.easel_number {
+    background: url('/a/images/checkbox.svg') no-repeat center;
+    color: transparent;
+}
+
+.artist-container.active .gallery_item {
+    height: 303px;
+    width: 193px;
+}
+
+.modal-content {
+    background: #fff;
+}
+
+.modal-content span.icon {
+    display: block;
+}
+
+.modal-content {
+    color: #000;
+}
+
+.modal-content span.heading1 {
+    font-size: 20px;
+    font-family: "acumin-pro-condensed", serif;
+    font-style: italic;
+    display: block;
+    color: #000;
+    font-weight: 800;
+}
+
+.modal-content span.heading2 {
+    font-size: 16px;
+    font-family: "acumin-pro-condensed", serif;
+    display: block;
+    color: #000;
+    font-weight: 800;
+}
+
+.modal-content span.heading2.light {
+    font-family: "acumin-pro-condensed", serif;
+    font-style: normal;
+    font-weight: 600;
+}
+
+.modal-content span.heading2.text-italic {
+    font-style: italic;
+; }
+
+.modal-content ul {
+    font-size: 16px;
+    font-family: "acumin-pro-condensed", serif;
+    font-weight: 400;
+    list-style-type: none;
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
+.modal-content span.heading2.extra-light {
+    font-family: "acumin-pro-condensed", serif;
+    font-style: normal;
+    font-weight: 200;
+}
+
+.light20 {
+    font-family: "acumin-pro-condensed", serif;
+    font-style: normal;
+    font-weight: 400;
+}
+
+.bold20 {
+    font-family: "acumin-pro-condensed", serif;
+    font-style: normal;
+    font-weight: 600;
+}
+
+.bold-italic-36 {
+    font-family: "acumin-pro-condensed-black", serif;
+    font-style: italic;
+    font-weight: 600;
+    font-size: 36px;
+}
+
+.semi-bold-italic-20 {
+    font-family: "acumin-pro-condensed", serif;
+    font-style: italic;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.modal-anchor {
+    text-align: center;
+}
+
+.modal-anchor a {
+    color: #000;
+    cursor: pointer;
+}
+
+.modal-okay {
+    display: block;
+    width: 99px;
+    padding: 4px;
+    border: 1px solid;
+    margin: 0 auto;
+}
+
+.modal-okay span {
+    vertical-align: middle;
+    display: block;
+    margin-top: 3px;
+    font-family: acumin-pro, sans-serif;
+}
+
+.modal {
+    text-align: center;
+    padding: 0!important;
+}
+
+.modal:before {
+    content: '';
+    height: 100%;
+    vertical-align: middle;
+    margin-right: -4px;
+}
+
+.modal-dialog {
+    text-align: left;
+    vertical-align: middle;
+}
+
+.voting .voting-list.no-camera.no-images .artist-container .artist_gallery {
+    width: auto;
+}
+
+.voting .voting-list.no-camera.no-images .artist-container span.artist_name {
+    height: auto;
+    width: auto;
+    margin-left: 13px
+}
+
+.voting .voting-list.no-camera.no-images .artist-container {
+    margin: 0 auto;
+    width: 240px;
+    text-align: center;
+    display: block;
+}
+
+.voting .voting-list.no-camera.no-images .artist-container span.artist_gallery {
+    margin-left: 8px;
+}
+
+.voting .voting-list.no-camera.no-images {
+    width: 240px;
+}
+
+h4.roundHead {
+    font-size: 31px;
+    font-weight: 800;
+    font-family: acumin-pro-condensed, sans-serif;
+    text-decoration: underline;
+}
+
+.event_summary .voting .voting-list span.easel_number {
+    width: auto;
+}
+
+.done {
+    font-size: 26px;
+    font-family: acumin-pro-condensed, sans-serif;
+    font-weight: 800;
+    color: #A39600;
+}
+
+.round {
+    font-family: acumin-pro-condensed, sans-serif;
+    color: white;
+    font-size: 26px;
+    font-weight: 300;
+}
+
+.soon {
+    color: #3498db;
+    font-family: acumin-pro-condensed, sans-serif;
+    font-size: 26px;
+    font-weight: 800;
+}
+
+.open {
+    color: #00A30D;
+    font-family: acumin-pro-condensed, sans-serif;
+    font-size: 26px;
+    font-weight: 800;
+}
+
+.roundHistory {
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+    width: 90%;
+}
+
+.activeRound {
+    text-decoration-color: white;
+    text-decoration: underline;
+    color: white;
+}
+
+.roundHistory a:hover {
+    color: white;
+    text-decoration: underline;
+    text-decoration-color: white;
+}
+
+.roundHistory div {
+    cursor: pointer;
+}
+
+.view-auction {
+    font-size: 26px;
+    font-family: acumin-pro-condensed, sans-serif;
+    text-transform: uppercase;
+    font-weight: 900;
+}
+
+.view-auction a {
+    color: #339C50;
+}
+
+.app_link {
+    text-align: center;
+}
+.artist_gallery button.btn.btn-primary.btn-xs {
+    height: 27px;
+    position: relative;
+    left: -28px;
+}
